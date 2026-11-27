@@ -5,6 +5,7 @@
 - Phase 0 audit and planning complete.
 - Expo workspace recreated from `blank-typescript` SDK 58 template.
 - `package.json`, `pnpm-lock.yaml`, strict `tsconfig.json`, `App.tsx`, `index.ts`, `app.json`, and generated assets now exist.
+- `pnpm typecheck` passes.
 - No production authentication, finance engine, transaction database, sync backend, or social backend exists.
 - No real financial integrations or sensitive permissions are approved.
 
@@ -20,8 +21,8 @@
 - Copied minimal scaffold files/assets into repo; renamed app/package to Scout.
 - Installed dependencies with `pnpm install`; generated `pnpm-lock.yaml`.
 - Added `typecheck` script.
-- Validation pending: typecheck, Expo doctor, app start/build.
-- Commit: pending.
+- `pnpm typecheck`: passed.
+- Commit: `d90f14d`.
 
 ### 2026-11-27 — P1-02 workspace health baseline
 - Verified no package manifests, workspace file, lockfile, TypeScript, lint, or format config.
