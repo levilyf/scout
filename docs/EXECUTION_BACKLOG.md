@@ -38,7 +38,7 @@ Update this file after every task. Include commit/PR reference and actual test r
 - [~] **P2-04 Recovery and verification UI:** basic test-adapter recovery and verification screens exist in `src/auth/RecoveryScreen.tsx`; incomplete: resend cooldown, open-email action, reset completion, and production provider flow. Partial commit `3d0f429`.
 - [x] **P2-05 Protected route guard:** added provider-neutral route state guard with loading, signed-out, expiry-boundary, and protected states plus guard tests in `src/auth/routeGuard.ts`. UI/session persistence integration remains pending. Verified 2026-11-27; commit `515ab1e`.
 - [!] **P2-06 Secure session storage:** blocked until exact Cloudflare-compatible identity service and secure native session approach are approved. No provider SDK or token storage added.
-- [~] **P2-07 Onboarding:** added profile, username availability, currency, privacy, optional account-name step, and completion UI in `src/onboarding/`. Still incomplete: persistence and authenticated completion routing.
+- [~] **P2-07 Onboarding:** added profile, username availability, currency, privacy, optional account-name step, completion UI, and owner-scoped SQLite persistence in `src/onboarding/` and migration v4. Still incomplete: authenticated completion routing and production username uniqueness enforcement.
 - [ ] **P2-08 Auth security tests:** route protection, account linking, token leakage prevention, session expiry, local data isolation. Not started.
 
 ## Phase 3 — Private finance core
