@@ -16,7 +16,7 @@ Update this file after every task. Include commit/PR reference and actual test r
 - [x] **P0-02 Documentation consistency:** aligned implementation-status claims across README, PRODUCT_SPEC, DECISIONS, backlog, and PROGRESS with ARCHITECTURE. Verified 2026-11-27; no product decisions changed. Commit `a3ed748`.
 - [x] **P0-03 Route inventory:** produced `docs/ROUTE_INVENTORY.md` covering PRODUCT_SPEC routes, auth, parent navigation, state requirements, access rules, and release phase. Verified 2026-11-27; commit `4425f18`.
 - [x] **P0-04 Product scope map:** produced `docs/SCOPE_MAP.md` marking MVP, later, proposed/validation-dependent, decision-gated, and prohibited scope. Verified 2026-11-27; commit `c8c0e5b`.
-- [x] **P0-05 Baseline CI:** attempted install, typecheck, lint, tests, format check, Expo doctor, and Android checks. All project checks unavailable or failed because no `package.json`, lockfile, source tree, CI, or Android project exists. Verified 2026-11-27; commit `TBD`.
+- [x] **P0-05 Baseline CI:** attempted install, typecheck, lint, tests, format check, Expo doctor, and Android checks. All project checks unavailable or failed because no `package.json`, lockfile, source tree, CI, or Android project exists. Verified 2026-11-27; commit `84154dc`.
 
 ## Phase 1 — Technical and UI foundation
 

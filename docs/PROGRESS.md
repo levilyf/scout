@@ -17,10 +17,10 @@
 - Tool availability: `node`, `npm`, `pnpm`, `npx`, and `adb` present; `expo` and `gradle` absent.
 - `pnpm install --frozen-lockfile`: failed, `ERR_PNPM_NO_PKG_MANIFEST`, no `package.json`.
 - `pnpm typecheck`, `pnpm lint`, `pnpm test`, `pnpm format:check`: failed, no package manifest.
-- `npx expo-doctor`: could not establish project baseline; no Expo project exists and package was not part of repository.
+- `npx expo-doctor`: no project baseline; no Expo project exists and package was not part of repository.
 - Android build: unavailable; no Expo app/Android project and no Gradle executable.
 - No successful checks claimed. No dependencies changed.
-- Commit: pending.
+- Commit: `84154dc`.
 
 ### 2026-11-27 — P0-04 product scope map
 - Added `docs/SCOPE_MAP.md` separating MVP, later approved direction, proposed/validation-dependent work, decision-gated work, and explicit non-goals.
