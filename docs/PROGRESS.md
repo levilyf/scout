@@ -5,7 +5,7 @@
 - Phase 0 audit and planning complete.
 - Phase 1 foundation complete at baseline level.
 - P2-01 external managed identity rejected; exact Cloudflare-compatible identity service remains open.
-- P3-01 data model review and P3-02 account repository baseline complete.
+- P3-01 data model review, P3-02 account management baseline, and P3-03 categories baseline complete.
 - `pnpm test`: 3 files, 12 tests passed.
 - `pnpm typecheck` passes.
 - No production authentication, sync backend, or social backend exists.
@@ -18,14 +18,14 @@
 
 ## Next task
 
-**P3-03 — Categories** using local SQLite and owner-scoped records.
+**P3-04 — Money utilities**; extend tested integer-unit parsing/formatting/aggregation and currency safeguards.
 
 ## Session log
 
-### 2026-11-27 — P3-02 account management
-- Added `src/database/accounts.ts` with validated owner-scoped create/list operations.
-- Added migration v2 for `opening_balance_minor` and nullable `archived_at`.
-- Edit/archive UI and balance history remain pending.
+### 2026-11-27 — P3-03 categories
+- Added migration v3 for owner/system categories with kind and archive fields.
+- Added `src/database/categories.ts` owner-scoped create/list operations.
+- Category edit/archive and transaction assignment remain pending.
 - `pnpm typecheck`: passed.
 - `pnpm test`: 3 files, 12 tests passed.
-- Commit: `f544060`.
+- Commit: pending.

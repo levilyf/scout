@@ -1,6 +1,6 @@
 import type { SQLiteDatabase } from 'expo-sqlite';
 
-export const DATABASE_VERSION = 2;
+export const DATABASE_VERSION = 3;
 
 const migrations: Record<number, string[]> = {
   1: [
@@ -11,6 +11,10 @@ const migrations: Record<number, string[]> = {
   2: [
     `ALTER TABLE accounts ADD COLUMN opening_balance_minor INTEGER NOT NULL DEFAULT 0`,
     `ALTER TABLE accounts ADD COLUMN archived_at TEXT`,
+  ],
+  3: [
+    `CREATE TABLE IF NOT EXISTS categories (id TEXT PRIMARY KEY NOT NULL, owner_user_id TEXT, name TEXT NOT NULL, kind TEXT NOT NULL CHECK (kind IN ('expense', 'income')), archived_at TEXT, created_at TEXT NOT NULL, updated_at TEXT NOT NULL)`,
+    `CREATE INDEX IF NOT EXISTS categories_owner_idx ON categories(owner_user_id, kind, archived_at)`,
   ],
 };
 
