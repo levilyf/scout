@@ -28,4 +28,4 @@ Continue P2-06: auth event hydration and account-switch isolation tests.
 - Wired `secureSessionStore` into Supabase sign-in, refresh, and sign-out.
 - `pnpm typecheck`: passed.
 - `pnpm test`: 5 files, 20 tests passed.
-- Commit: pending.
+- Commit: `0fb1552`.
