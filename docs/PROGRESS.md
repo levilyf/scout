@@ -4,7 +4,7 @@
 
 - Phase 0 audit and planning complete.
 - Phase 1 foundation complete at baseline level.
-- P2-01 provider decision blocked on external identity approval.
+- P2-01 owner decision recorded: external managed identity providers rejected; exact Cloudflare-compatible identity service remains open.
 - P2-02 through P2-05 auth contracts, test UI, recovery/verification, and route guard baseline complete.
 - `pnpm test`: 3 files, 12 tests passed.
 - `pnpm typecheck` passes.
@@ -13,22 +13,16 @@
 
 ## Blocker
 
-Production auth remains blocked on owner decision: external managed identity provider allowed under Cloudflare-only ecosystem?
+P2-06 secure session storage and production auth require exact Cloudflare-compatible identity service selection. Do not build custom password storage.
 
 ## Next task
 
-**P2-06 — Secure session storage** only after provider and storage approach approval.
+Continue first independent unblocked task after auth gate: **P3-01 Data model review**. Auth-dependent work remains blocked.
 
 ## Session log
 
-### 2026-11-27 — P2-05 protected route guard
-- Added `src/auth/routeGuard.ts` with loading, auth, expiry, protected route states.
-- Added expiry-boundary and access-control tests in `src/auth/routeGuard.test.ts`.
-- UI/session persistence/account-switch integration remains pending.
-- `pnpm test`: 3 files, 12 tests passed.
-- `pnpm typecheck`: passed.
-- Commit: `515ab1e`.
-
-### 2026-11-27 — P2-04 recovery/verification UI
-- Added reset-password and verification screens.
-- Commit: `3d0f429` plus metadata `409abdf`.
+### 2026-11-27 — Auth provider decision
+- Owner rejected external managed identity providers.
+- Added D-015 to `docs/DECISIONS.md`.
+- Updated `docs/AUTH_PROVIDER_DECISION.md`, backlog, and this progress file.
+- No provider SDK or session storage added.

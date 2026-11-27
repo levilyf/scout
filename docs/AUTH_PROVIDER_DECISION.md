@@ -1,6 +1,6 @@
 # Authentication Provider Decision Pack
 
-**Status:** Decision required before production auth integration.
+**Status:** Owner decided no external managed identity provider on 2026-11-27. Exact Cloudflare-compatible identity service remains open.
 
 ## Non-negotiable requirements
 
@@ -47,9 +47,6 @@ requestAccountDeletion()
 
 Adapter output must expose provider-neutral user ID, session state, expiry, and verification state. Provider tokens remain inside auth/session infrastructure.
 
-## Approval question
+## Decision outcome
 
-Can Scout use an external managed identity provider while keeping all non-auth backend services and finance/social data in Cloudflare?
-
-- **No:** restrict evaluation to Cloudflare-compatible identity products; no custom password implementation.
-- **Yes:** perform current pricing/privacy/Expo compatibility comparison, then select provider in a separate owner-approved decision.
+Owner chose **No**: no external managed identity provider. Restrict future evaluation to Cloudflare-compatible identity products. Do not build custom password storage. Exact Cloudflare service remains an approval gate.
