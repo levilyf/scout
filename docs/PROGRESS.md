@@ -22,7 +22,7 @@
 - Added `src/database/migrations.ts` with schema version 1, foreign keys, account ownership, transaction status/type constraints, and owner/date index.
 - `pnpm typecheck`: passed.
 - Runtime migration tests remain pending P1-09 test foundation.
-- Commit: pending.
+- Commit: `90995ac`.
 
 ### 2026-11-27 — P1-06 navigation shell
 - Added typed `RootRoute`, `Tab`, tab labels, and five-tab navigation shell.
