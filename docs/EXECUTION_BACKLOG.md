@@ -22,7 +22,7 @@ Update this file after every task. Include commit/PR reference and actual test r
 
 - [x] **P1-01 Expo/React Native compatibility:** recorded environment and registry baseline in `docs/COMPATIBILITY.md`; scaffold/package alignment and Android/CI validation remain pending scaffold creation. Verified 2026-11-27; commit `439eb06`.
 - [x] **P1-02 Workspace health:** recorded missing manifests, workspace, lockfile, scripts, strict TS, lint, format, and CI in `docs/WORKSPACE_HEALTH.md`; recreated minimal Expo workspace and committed lockfile. Verified 2026-11-27; commit `d90f14d`.
-- [ ] **P1-03 Design tokens:** centralize colors, spacing, radii, typography, elevation, icon sizes, and motion values from UI_REFERENCE_SPEC.
+- [x] **P1-03 Design tokens:** centralized Scout colors, spacing, radii, typography, elevation, icon sizes, and motion values in `src/design/tokens.ts`. Values follow DESIGN_SYSTEM/UI_REFERENCE_SPEC baseline; final measured tuning remains open. Verified 2026-11-27; commit `TBD`.
 - [ ] **P1-04 Typography and icons:** inspect installed fonts/licensing and icon dependencies; propose the smallest coherent choice, record it, and avoid arbitrary mixing.
 - [ ] **P1-05 Shared UI primitives:** screen shell, safe area, buttons, fields, labels, cards, dividers, icon buttons, loading/empty/error states.
 - [ ] **P1-06 Navigation shell:** define typed routes and five-tab shell matching the reference. Keep the Profile/More decision configurable until approved.

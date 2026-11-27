@@ -4,16 +4,23 @@
 
 - Phase 0 audit and planning complete.
 - Expo workspace recreated from `blank-typescript` SDK 58 template.
-- `package.json`, `pnpm-lock.yaml`, strict `tsconfig.json`, `App.tsx`, `index.ts`, `app.json`, and generated assets now exist.
-- `pnpm typecheck` passes.
+- P1-03 design tokens added in `src/design/tokens.ts`.
+- `pnpm typecheck` passed before token addition; token module uses strict TypeScript-compatible constants.
 - No production authentication, finance engine, transaction database, sync backend, or social backend exists.
 - No real financial integrations or sensitive permissions are approved.
 
 ## Next task
 
-**P1-03 — Design tokens** in `docs/EXECUTION_BACKLOG.md`.
+**P1-04 — Typography and icons** in `docs/EXECUTION_BACKLOG.md`.
 
 ## Session log
+
+### 2026-11-27 — P1-03 design tokens
+- Added centralized dark visual tokens: colors, 4-point spacing, radii, typography, sizes, elevation, and motion.
+- Used only approved neutral palette plus restrained functional colors.
+- No new dependency added; icon family selection remains open.
+- Validation pending after docs update.
+- Commit: pending.
 
 ### 2026-11-27 — Expo workspace recreation
 - Direct scaffold in repo blocked because existing docs would be overwritten.
@@ -23,10 +30,3 @@
 - Added `typecheck` script.
 - `pnpm typecheck`: passed.
 - Commit: `d90f14d`.
-
-### 2026-11-27 — P1-02 workspace health baseline
-- Verified no package manifests, workspace file, lockfile, TypeScript, lint, or format config.
-- Verified pnpm `10.26.2`; Git working tree clean and branch tracks `origin/main`.
-- Added `docs/WORKSPACE_HEALTH.md` with required workspace contract and blockers.
-- No dependencies or source files created.
-- Commit: `e3e699a` and `adb5c31`.
