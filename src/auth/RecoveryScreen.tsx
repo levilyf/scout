@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { colors, spacing, typography } from '../design/tokens';
 import { Field, PrimaryButton, Screen } from '../ui/primitives';
@@ -11,15 +11,19 @@ export function RecoveryScreen({ adapter = testAuthAdapter, onBack }: { adapter?
   const [message, setMessage] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
+  const [cooldown, setCooldown] = useState(0);
+  useEffect(() => { if (!cooldown) return; const timer = setInterval(() => setCooldown((value) => Math.max(0, value - 1)), 1000); return () => clearInterval(timer); }, [cooldown]);
 
   async function submit() {
     const validationError = validateEmail(email);
     if (validationError) return setError(validationError);
     setError(null);
+    if (cooldown) return;
     setLoading(true);
     try {
       await adapter.requestPasswordReset(email.trim().toLowerCase());
       setMessage('If an account matches, we sent a reset link.');
+      setCooldown(60);
     } catch {
       setError('Could not send reset link. Try again.');
     } finally {
@@ -36,7 +40,7 @@ export function RecoveryScreen({ adapter = testAuthAdapter, onBack }: { adapter?
         <Field autoCapitalize="none" keyboardType="email-address" label="Email" onChangeText={setEmail} value={email} />
         {error ? <Text accessibilityRole="alert" style={styles.error}>{error}</Text> : null}
         {message ? <Text style={styles.message}>{message}</Text> : null}
-        <PrimaryButton disabled={loading} onPress={submit}>{loading ? 'Sending…' : 'Send link'}</PrimaryButton>
+        <PrimaryButton disabled={loading || Boolean(cooldown)} onPress={submit}>{loading ? 'Sending…' : cooldown ? `Resend in ${cooldown}s` : 'Send link'}</PrimaryButton>
       </View>
     </Screen>
   );

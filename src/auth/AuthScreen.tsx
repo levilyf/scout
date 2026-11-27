@@ -47,6 +47,8 @@ export function AuthScreen({ mode = 'login', onSuccess }: { mode?: Mode; onSucce
         <Field autoComplete="password" label="Password" onChangeText={setPassword} secureTextEntry value={password} />
         {error ? <Text accessibilityRole="alert" style={styles.error}>{error}</Text> : null}
         <PrimaryButton disabled={loading} onPress={submit}>{loading ? 'Loading…' : isLogin ? 'Log in' : 'Sign up'}</PrimaryButton>
+        <Text style={styles.separator}>or</Text>
+        <PrimaryButton disabled={loading} onPress={async () => { setLoading(true); setError(null); try { await testAuthAdapter.signInWithGoogle(); onSuccess?.(); } catch { setError('Google sign-in failed. Try again.'); } finally { setLoading(false); } }}>Continue with Google</PrimaryButton>
       </View>
     </Screen>
   );
@@ -60,4 +62,5 @@ const styles = StyleSheet.create({
   title: { color: colors.primaryText, ...typography.title },
   description: { color: colors.secondaryText, ...typography.body, marginBottom: spacing.md },
   error: { color: colors.danger, ...typography.metadata, marginBottom: spacing.xs },
+  separator: { color: colors.mutedText, ...typography.metadata, textAlign: 'center' },
 });
