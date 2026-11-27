@@ -23,7 +23,7 @@
 - Updated `App.tsx` to use primitives.
 - Added minimal `lint`, `test`, and `format:check` script contracts; format tool remains uninstalled.
 - `pnpm typecheck`: passed.
-- Commit: pending.
+- Commit: `396ad83`.
 
 ### 2026-11-27 — P1-04 typography and icons
 - Inspected dependencies and generated assets.
