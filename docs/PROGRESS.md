@@ -28,4 +28,4 @@
 - Edit/archive UI and balance history remain pending.
 - `pnpm typecheck`: passed.
 - `pnpm test`: 3 files, 12 tests passed.
-- Commit: pending.
+- Commit: `f544060`.

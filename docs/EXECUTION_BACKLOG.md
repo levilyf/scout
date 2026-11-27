@@ -44,7 +44,7 @@ Update this file after every task. Include commit/PR reference and actual test r
 ## Phase 3 — Private finance core
 
 - [x] **P3-01 Data model review:** documented account, category, transaction, transfer, budget, ownership, money, aggregate, deletion, and migration invariants in `docs/DATA_MODEL.md`. No destructive schema change made. Verified 2026-11-27; commit `0660b14`.
-- [x] **P3-02 Account management:** added owner-scoped account creation/list repository and migration v2 opening-balance/archive columns in `src/database/accounts.ts` and `src/database/migrations.ts`. Edit/archive UI and balance history remain pending. Verified 2026-11-27; commit `TBD`.
+- [x] **P3-02 Account management:** added owner-scoped account creation/list repository and migration v2 opening-balance/archive columns in `src/database/accounts.ts` and `src/database/migrations.ts`. Edit/archive UI and balance history remain pending. Verified 2026-11-27; commit `f544060`.
 - [ ] **P3-03 Categories:** defaults, user categories if approved, category assignment and management.
 - [ ] **P3-04 Money utilities:** parse/format/add/subtract/aggregate using integer minor units; multi-currency safeguards.
 - [ ] **P3-05 Transaction domain:** expense, income, transfer, validation, idempotency, edit/delete rules.
