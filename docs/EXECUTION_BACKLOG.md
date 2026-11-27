@@ -34,12 +34,12 @@ Update this file after every task. Include commit/PR reference and actual test r
 
 - [!] **P2-01 Auth provider decision pack:** owner rejected external managed identity providers. `docs/AUTH_PROVIDER_DECISION.md` now records D-015; exact Cloudflare-compatible identity service remains blocked. Verified 2026-11-27.
 - [x] **P2-02 Auth adapter contract:** added provider-independent auth/session types and sign-in, sign-up, Google, verification, recovery, refresh, sign-out, and deletion interfaces in `src/auth/contracts.ts`; added boundary validation tests. No provider SDK or production implementation. Verified 2026-11-27; commit `f35c36c`.
-- [x] **P2-03 Login and sign-up UI:** added shared login/sign-up screen using the test adapter, validation, loading/error states, and protected app transition in `src/auth/AuthScreen.tsx`. No production auth or Google SDK. Verified 2026-11-27; commit `5542355`.
-- [x] **P2-04 Recovery and verification UI:** added test-adapter recovery and verification screens with non-enumerating reset response, validation, loading, and recoverable errors in `src/auth/RecoveryScreen.tsx`. Production provider flow and resend cooldown remain blocked. Verified 2026-11-27; commit `3d0f429`.
+- [~] **P2-03 Login and sign-up UI:** basic test-adapter screen exists in `src/auth/AuthScreen.tsx`; incomplete: Google action, full auth navigation, complete states, and production adapter integration. No production auth or Google SDK. Partial commit `5542355`.
+- [~] **P2-04 Recovery and verification UI:** basic test-adapter recovery and verification screens exist in `src/auth/RecoveryScreen.tsx`; incomplete: resend cooldown, open-email action, reset completion, and production provider flow. Partial commit `3d0f429`.
 - [x] **P2-05 Protected route guard:** added provider-neutral route state guard with loading, signed-out, expiry-boundary, and protected states plus guard tests in `src/auth/routeGuard.ts`. UI/session persistence integration remains pending. Verified 2026-11-27; commit `515ab1e`.
 - [!] **P2-06 Secure session storage:** blocked until exact Cloudflare-compatible identity service and secure native session approach are approved. No provider SDK or token storage added.
-- [ ] **P2-07 Onboarding:** profile, unique username, country/currency, privacy introduction, optional account setup, completion.
-- [ ] **P2-08 Auth security tests:** route protection, account linking, token leakage prevention, session expiry, local data isolation.
+- [ ] **P2-07 Onboarding:** profile, unique username, country/currency, privacy introduction, optional account setup, completion. Not started.
+- [ ] **P2-08 Auth security tests:** route protection, account linking, token leakage prevention, session expiry, local data isolation. Not started.
 
 ## Phase 3 — Private finance core
 
