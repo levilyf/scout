@@ -33,7 +33,7 @@ Update this file after every task. Include commit/PR reference and actual test r
 ## Phase 2 — Authentication and onboarding
 
 - [!] **P2-01 Auth provider decision pack:** created `docs/AUTH_PROVIDER_DECISION.md` with candidate comparison, adapter contract, recommendation, and owner approval question. Blocked pending decision whether external managed identity is allowed under Cloudflare-only ecosystem. Verified 2026-11-27; commit `98112e6`.
-- [ ] **P2-02 Auth adapter contract:** define provider-independent sign-in, sign-up, Google, verification, recovery, refresh, sign-out, and account deletion interfaces.
+- [x] **P2-02 Auth adapter contract:** added provider-independent auth/session types and sign-in, sign-up, Google, verification, recovery, refresh, sign-out, and deletion interfaces in `src/auth/contracts.ts`; added boundary validation tests. No provider SDK or production implementation. Verified 2026-11-27; commit `TBD`.
 - [ ] **P2-03 Login and sign-up UI:** reproduce reference screens and all states with test adapter only.
 - [ ] **P2-04 Recovery and verification UI:** implement verification, resend cooldown, forgot/reset password, and errors.
 - [ ] **P2-05 Protected route guard:** no guest bypass; handle loading, expired session, logout, and account switch.
