@@ -25,7 +25,7 @@ After decision: complete provider comparison/selection, or continue P2-02 provid
 - Compared Cloudflare Access, Clerk, Auth0, Supabase Auth, Firebase Authentication, and custom auth boundary.
 - Recommended no integration before owner decision; rejected homemade password storage.
 - No provider selected or dependency added.
-- Commit: pending.
+- Commit: `98112e6`.
 
 ### 2026-11-27 — P1-09 test foundation
 - Added Vitest and domain tests.
