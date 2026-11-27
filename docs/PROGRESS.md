@@ -22,11 +22,10 @@
 - Confirmed no icon package installed; deferred one coherent outline family selection before screen/navigation UI.
 - Documented official Google mark requirement for future auth UI.
 - No dependency added.
-- Commit: pending.
+- Commit: `da107a1`.
 
 ### 2026-11-27 — P1-03 design tokens
-- Added centralized dark visual tokens: colors, 4-point spacing, radii, typography, sizes, elevation, and motion.
+- Added centralized dark visual tokens: colors, 4-point spacing, radii, typography, sizes, and motion.
 - Used only approved neutral palette plus restrained functional colors.
-- No new dependency added; icon family selection remains open.
 - `pnpm typecheck`: passed.
 - Commit: `ce95610`.
