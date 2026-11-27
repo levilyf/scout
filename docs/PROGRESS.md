@@ -26,4 +26,4 @@
 - Added `docs/DATA_MODEL.md`.
 - Documented ownership predicates, account/category/transaction/budget fields, transfer pairing, aggregate rules, and migration constraints.
 - No destructive migration or schema change made.
-- Commit: pending.
+- Commit: `0660b14`.
