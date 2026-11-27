@@ -19,7 +19,7 @@
 - Confirmed architecture, privacy, design, and build documents already match accepted decisions and current audit state.
 - No product, privacy, auth, backend, or visual decisions changed.
 - Checks: `rg` consistency scan passed; no code checks available because implementation is absent.
-- Commit: pending.
+- Commit: `a3ed748`.
 
 ### 2026-11-27 — P0-01 repository audit
 - Inspected repository tree, Git history, manifests, workflows, app/test directories, and current branch state.

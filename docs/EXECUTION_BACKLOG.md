@@ -13,7 +13,7 @@ Update this file after every task. Include commit/PR reference and actual test r
 ## Phase 0 — Audit and planning
 
 - [x] **P0-01 Repository audit:** inspected all files, dependencies, workflows, build scripts, Expo compatibility, and current CI. Repository contains documentation only; app scaffold, package manifests, lockfile, tests, workflows, and build scripts are absent. Baseline checks unavailable. Verified 2026-11-27; commit `8a7764e`.
-- [x] **P0-02 Documentation consistency:** aligned implementation-status claims across README, PRODUCT_SPEC, DECISIONS, backlog, and PROGRESS with ARCHITECTURE. Verified 2026-11-27; no product decisions changed. Commit `TBD`.
+- [x] **P0-02 Documentation consistency:** aligned implementation-status claims across README, PRODUCT_SPEC, DECISIONS, backlog, and PROGRESS with ARCHITECTURE. Verified 2026-11-27; no product decisions changed. Commit `a3ed748`.
 - [ ] **P0-03 Route inventory:** produce a route matrix for every page in PRODUCT_SPEC, including auth requirement, parent navigation, empty/loading/error/offline states, and release phase.
 - [ ] **P0-04 Product scope map:** mark every feature MVP, later phase, proposed, or blocked. Do not silently promote proposed features.
 - [ ] **P0-05 Baseline CI:** run install, typecheck, lint, tests, format check, and Android build where feasible. Record failures without claiming success.
