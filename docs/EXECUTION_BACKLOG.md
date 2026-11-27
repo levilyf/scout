@@ -34,7 +34,7 @@ Update this file after every task. Include commit/PR reference and actual test r
 
 - [!] **P2-01 Auth provider decision pack:** created `docs/AUTH_PROVIDER_DECISION.md` with candidate comparison, adapter contract, recommendation, and owner approval question. Blocked pending decision whether external managed identity is allowed under Cloudflare-only ecosystem. Verified 2026-11-27; commit `98112e6`.
 - [x] **P2-02 Auth adapter contract:** added provider-independent auth/session types and sign-in, sign-up, Google, verification, recovery, refresh, sign-out, and deletion interfaces in `src/auth/contracts.ts`; added boundary validation tests. No provider SDK or production implementation. Verified 2026-11-27; commit `f35c36c`.
-- [x] **P2-03 Login and sign-up UI:** added shared login/sign-up screen using the test adapter, validation, loading/error states, and protected app transition in `src/auth/AuthScreen.tsx`. No production auth or Google SDK. Verified 2026-11-27; commit `TBD`.
+- [x] **P2-03 Login and sign-up UI:** added shared login/sign-up screen using the test adapter, validation, loading/error states, and protected app transition in `src/auth/AuthScreen.tsx`. No production auth or Google SDK. Verified 2026-11-27; commit `5542355`.
 - [ ] **P2-04 Recovery and verification UI:** implement verification, resend cooldown, forgot/reset password, and errors.
 - [ ] **P2-05 Protected route guard:** no guest bypass; handle loading, expired session, logout, and account switch.
 - [ ] **P2-06 Secure session storage:** implement only after provider and storage approach are approved.

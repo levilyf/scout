@@ -27,7 +27,7 @@ Production auth remains blocked on owner decision: external managed identity pro
 - Protected app transition remains local component state only; no session persistence or production auth claim.
 - `pnpm typecheck`: passed.
 - `pnpm test`: 2 files, 8 tests passed.
-- Commit: pending.
+- Commit: `5542355`.
 
 ### 2026-11-27 — P2-02 auth adapter contract
 - Added provider-neutral contracts and validation.
