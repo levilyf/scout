@@ -27,7 +27,7 @@ Production auth remains blocked on owner decision: external managed identity pro
 - UI/session persistence/account-switch integration remains pending.
 - `pnpm test`: 3 files, 12 tests passed.
 - `pnpm typecheck`: passed.
-- Commit: pending.
+- Commit: `515ab1e`.
 
 ### 2026-11-27 — P2-04 recovery/verification UI
 - Added reset-password and verification screens.
