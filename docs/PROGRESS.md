@@ -28,4 +28,4 @@ Continue **P2-07 onboarding**: persistence boundary and authenticated completion
 - Completion summary includes optional account name.
 - `pnpm test`: 4 files, 17 tests passed.
 - `pnpm typecheck`: passed.
-- Commit: pending.
+- Commit: `0f2d786`.
