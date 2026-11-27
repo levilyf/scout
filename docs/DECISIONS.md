@@ -14,7 +14,7 @@ This file is the canonical record of owner decisions. Agents must update it when
 | ID | Decision | Constraints / notes |
 |---|---|---|
 | D-001 | Product working name is Scout | Tagline: “Know your money.” |
-| D-002 | Android-first | Current app scaffold is Expo / React Native. |
+| D-002 | Android-first | Approved mobile stack is Expo / React Native; repository audit found scaffold absent and recreation remains pending. |
 | D-003 | Mandatory authentication | No guest mode. |
 | D-004 | Email/password and Google sign-in | Provider and native OAuth strategy remain open. |
 | D-005 | Username-based friend discovery | No automatic financial visibility from friendship. |

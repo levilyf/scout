@@ -11,7 +11,7 @@ The social layer should make healthy money habits interesting without turning fi
 ## 2. Accepted product decisions
 
 - Working product name: Scout.
-- Android-first project scaffold exists.
+- Android-first Expo / React Native stack is approved; current repository audit found no scaffold files.
 - **An account and authentication are mandatory. There is no guest mode.**
 - **Accepted sign-in methods: email and password, plus Google sign-in.**
 - Users must sign up or log in before accessing the app's main features or financial/social data.
