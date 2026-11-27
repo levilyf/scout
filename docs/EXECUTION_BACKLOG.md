@@ -26,7 +26,7 @@ Update this file after every task. Include commit/PR reference and actual test r
 - [x] **P1-04 Typography and icons:** inspected installed dependencies/assets; recorded system sans-serif baseline and deferred single outline icon-family selection in `docs/TYPOGRAPHY_ICONS.md`. Verified 2026-11-27; commit `da107a1`.
 - [x] **P1-05 Shared UI primitives:** added typed React Native primitives in `src/ui/primitives.tsx` for screen shell, labels, buttons, fields, cards, dividers, icon buttons, and centered loading/empty/error states. Verified 2026-11-27; commit `396ad83`.
 - [x] **P1-06 Navigation shell:** added typed root/tab routes and five-tab Home, Activity, Social, Budgets, Profile shell in `src/navigation/`. Profile remains configurable at route level; final Profile/More decision remains open. Verified 2026-11-27; commit `e971122`.
-- [ ] **P1-07 Local SQLite foundation:** select a compatible Expo SQLite integration, implement versioned migrations, repository boundaries, account namespace, and migration tests.
+- [x] **P1-07 Local SQLite foundation:** selected Expo SQLite `15.1.4`; added versioned migration/client in `src/database/` with account-scoped owner IDs and transaction constraints. Repository and migration runtime tests remain pending test foundation. Verified 2026-11-27; commit `TBD`.
 - [ ] **P1-08 Domain package:** implement currency/money types, IDs, timestamps, validation primitives, and pure tests.
 - [ ] **P1-09 Test foundation:** unit, component, repository, navigation, and Android smoke-test conventions.
 
