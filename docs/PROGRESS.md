@@ -21,7 +21,7 @@
 - Added `src/domain/money.ts` for integer-unit money construction, arithmetic, currency checks, zero values, and locale formatting.
 - `pnpm typecheck`: passed.
 - Pure behavior tests remain pending P1-09.
-- Commit: pending.
+- Commit: `1216834`.
 
 ### 2026-11-27 — P1-07 local SQLite foundation
 - Added `expo-sqlite@15.1.4`.
