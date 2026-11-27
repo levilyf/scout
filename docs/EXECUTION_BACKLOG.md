@@ -28,7 +28,7 @@ Update this file after every task. Include commit/PR reference and actual test r
 - [x] **P1-06 Navigation shell:** added typed root/tab routes and five-tab Home, Activity, Social, Budgets, Profile shell in `src/navigation/`. Profile remains configurable at route level; final Profile/More decision remains open. Verified 2026-11-27; commit `e971122`.
 - [x] **P1-07 Local SQLite foundation:** selected Expo SQLite `15.1.4`; added versioned migration/client in `src/database/` with account-scoped owner IDs and transaction constraints. Repository and migration runtime tests remain pending test foundation. Verified 2026-11-27; commit `90995ac`.
 - [x] **P1-08 Domain package:** added typed currency/money, entity IDs, transaction/account types, integer minor-unit validation, currency guards, and formatting in `src/domain/`. Pure tests remain pending P1-09. Verified 2026-11-27; commit `1216834`.
-- [ ] **P1-09 Test foundation:** unit, component, repository, navigation, and Android smoke-test conventions.
+- [x] **P1-09 Test foundation:** added Vitest, domain test conventions, `docs/TESTING.md`, and initial money/ID tests. Repository, component, navigation, and Android smoke tests remain pending their runtime environments. Verified 2026-11-27; commit `TBD`.
 
 ## Phase 2 — Authentication and onboarding
 
