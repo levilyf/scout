@@ -1,6 +1,6 @@
 # Authentication Provider Decision Pack
 
-**Status:** Owner decided no external managed identity provider on 2026-11-27. Exact Cloudflare-compatible identity service remains open.
+**Status:** Owner allows external managed identity only when completely free for expected Scout use. Finance/social backend and data remain Cloudflare-only. Provider selection remains open.
 
 ## Non-negotiable requirements
 
@@ -49,4 +49,4 @@ Adapter output must expose provider-neutral user ID, session state, expiry, and 
 
 ## Decision outcome
 
-Owner chose **No**: no external managed identity provider. Restrict future evaluation to Cloudflare-compatible identity products. Do not build custom password storage. Exact Cloudflare service remains an approval gate.
+Owner chose **A with zero-cost constraint**: external managed identity is allowed for identity only, provided expected Scout usage is completely free. All finance/social backend services and data remain Cloudflare-only. Do not build custom password storage.

@@ -27,7 +27,7 @@ This file is the canonical record of owner decisions. Agents must update it when
 | D-012 | Integer minor units for money | INR calculations/storage use paise; no floating-point money arithmetic. |
 | D-013 | Free/open-source direction | No subscriptions, ads, paywalls, or monetization without owner approval. |
 | D-014 | India-first, international-ready | INR proposed default; currency and locale must not be hardcoded globally. |
-| D-015 | No external managed identity provider | Keep authentication within approved Cloudflare ecosystem; select exact Cloudflare-compatible identity service before production auth. Do not build custom password storage. |
+| D-015 | External managed identity allowed for identity only | Owner allows external managed identity only if service is completely free for Scout's expected use; finance/social backend and data remain Cloudflare-only. Do not build custom password storage. Provider selection remains open. |
 
 ## Open decisions
 
