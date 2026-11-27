@@ -28,7 +28,7 @@ Production auth remains blocked on owner decision: external managed identity pro
 - Production provider flow and resend cooldown remain unimplemented until provider approval.
 - `pnpm typecheck`: passed.
 - `pnpm test`: 2 files, 8 tests passed.
-- Commit: pending.
+- Commit: `3d0f429`.
 
 ### 2026-11-27 — P2-03 login/sign-up UI
 - Added test-adapter auth screen and local protected transition.
