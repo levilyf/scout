@@ -23,7 +23,7 @@
 - Shell matches reference destinations: Home, Activity, Social, Budgets, Profile.
 - Profile/More decision remains open; no deep route behavior or auth guard added yet.
 - `pnpm typecheck`: passed.
-- Commit: pending.
+- Commit: `e971122`.
 
 ### 2026-11-27 — P1-05 shared UI primitives
 - Added `Screen`, `Label`, `PrimaryButton`, `Field`, `Card`, `Divider`, `IconButton`, and `CenteredState`.
