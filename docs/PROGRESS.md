@@ -23,7 +23,7 @@
 - `pnpm test`: 1 file, 5 tests passed.
 - `pnpm typecheck`: passed.
 - Repository/component/navigation/Android tests remain pending runtime setup.
-- Commit: pending.
+- Commit: `1b3f28d`.
 
 ### 2026-11-27 — P1-08 domain package
 - Added `src/domain/types.ts` and `src/domain/money.ts`.
