@@ -21,7 +21,7 @@ Update this file after every task. Include commit/PR reference and actual test r
 ## Phase 1 — Technical and UI foundation
 
 - [x] **P1-01 Expo/React Native compatibility:** recorded environment and registry baseline in `docs/COMPATIBILITY.md`; scaffold/package alignment and Android/CI validation remain pending scaffold creation. Verified 2026-11-27; commit `439eb06`.
-- [ ] **P1-02 Workspace health:** verify pnpm workspace, lockfile, scripts, strict TS, lint, format, and CI.
+- [x] **P1-02 Workspace health:** recorded missing manifests, workspace, lockfile, scripts, strict TS, lint, format, and CI in `docs/WORKSPACE_HEALTH.md`. Workspace creation remains pending. Verified 2026-11-27; commit `TBD`.
 - [ ] **P1-03 Design tokens:** centralize colors, spacing, radii, typography, elevation, icon sizes, and motion values from UI_REFERENCE_SPEC.
 - [ ] **P1-04 Typography and icons:** inspect installed fonts/licensing and icon dependencies; propose the smallest coherent choice, record it, and avoid arbitrary mixing.
 - [ ] **P1-05 Shared UI primitives:** screen shell, safe area, buttons, fields, labels, cards, dividers, icon buttons, loading/empty/error states.
