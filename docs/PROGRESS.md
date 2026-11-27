@@ -4,15 +4,22 @@
 
 - Repository audit complete.
 - Documentation consistency pass complete.
+- Route inventory complete in `docs/ROUTE_INVENTORY.md`.
 - Repository contains documentation only: no Expo app, package manifests, lockfile, tests, CI workflows, or build scripts.
 - No production authentication, finance engine, transaction database, sync backend, or social backend exists.
 - No real financial integrations or sensitive permissions are approved.
 
 ## Next task
 
-**P0-03 — Route inventory** in `docs/EXECUTION_BACKLOG.md`.
+**P0-04 — Product scope map** in `docs/EXECUTION_BACKLOG.md`.
 
 ## Session log
+
+### 2026-11-27 — P0-03 route inventory
+- Added `docs/ROUTE_INVENTORY.md` with route families, auth requirements, parent navigation, release phase, access rules, and loading/empty/error/offline state contract.
+- No implementation claims made; routes remain planning contracts.
+- Checks: route coverage reviewed against `docs/PRODUCT_SPEC.md`; no code checks available.
+- Commit: pending.
 
 ### 2026-11-27 — P0-02 documentation consistency
 - Updated implementation-status claims in `README.md`, `docs/PRODUCT_SPEC.md`, and `docs/DECISIONS.md`.
