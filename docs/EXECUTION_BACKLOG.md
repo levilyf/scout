@@ -32,7 +32,7 @@ Update this file after every task. Include commit/PR reference and actual test r
 
 ## Phase 2 — Authentication and onboarding
 
-- [ ] **P2-01 Auth provider decision pack:** compare suitable providers for Expo/React Native, email/password, Google sign-in, Cloudflare backend compatibility, pricing/free tier, account linking, session security, export/deletion, and vendor lock-in. Record recommendation in DECISIONS; do not integrate until approved.
+- [!] **P2-01 Auth provider decision pack:** created `docs/AUTH_PROVIDER_DECISION.md` with candidate comparison, adapter contract, recommendation, and owner approval question. Blocked pending decision whether external managed identity is allowed under Cloudflare-only ecosystem. Verified 2026-11-27; commit `TBD`.
 - [ ] **P2-02 Auth adapter contract:** define provider-independent sign-in, sign-up, Google, verification, recovery, refresh, sign-out, and account deletion interfaces.
 - [ ] **P2-03 Login and sign-up UI:** reproduce reference screens and all states with test adapter only.
 - [ ] **P2-04 Recovery and verification UI:** implement verification, resend cooldown, forgot/reset password, and errors.

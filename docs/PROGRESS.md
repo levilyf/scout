@@ -6,25 +6,29 @@
 - Phase 1 foundation tasks P1-01 through P1-09 complete at baseline level.
 - Expo workspace, design tokens, UI primitives, navigation shell, SQLite foundation, domain primitives, and Vitest test foundation exist.
 - `pnpm test` and `pnpm typecheck` pass.
+- P2-01 auth provider decision is blocked on owner approval of external managed identity providers.
 - No production authentication, sync backend, or social backend exists.
 - No real financial integrations or sensitive permissions are approved.
 
+## Blocker
+
+Owner decision needed: **Can Scout use an external managed identity provider while keeping all non-auth backend services and finance/social data in Cloudflare?**
+
 ## Next task
 
-**P2-01 — Auth provider decision pack** in `docs/EXECUTION_BACKLOG.md`.
+After decision: complete provider comparison/selection, or continue P2-02 provider-independent auth adapter contract if external identity is rejected.
 
 ## Session log
 
+### 2026-11-27 — P2-01 auth provider decision pack
+- Added `docs/AUTH_PROVIDER_DECISION.md`.
+- Compared Cloudflare Access, Clerk, Auth0, Supabase Auth, Firebase Authentication, and custom auth boundary.
+- Recommended no integration before owner decision; rejected homemade password storage.
+- No provider selected or dependency added.
+- Commit: pending.
+
 ### 2026-11-27 — P1-09 test foundation
-- Added `vitest@5.1.2`.
-- Added `src/domain/money.test.ts` covering integer arithmetic, unsafe/fractional values, currency mismatch, INR formatting, and ID validation.
-- Changed `pnpm test` to `vitest run`.
-- Added `docs/TESTING.md` with test layers and privacy rules.
+- Added Vitest and domain tests.
 - `pnpm test`: 1 file, 5 tests passed.
 - `pnpm typecheck`: passed.
-- Repository/component/navigation/Android tests remain pending runtime setup.
-- Commit: `1b3f28d`.
-
-### 2026-11-27 — P1-08 domain package
-- Added `src/domain/types.ts` and `src/domain/money.ts`.
-- Commit: `1216834` plus metadata `738b654`.
+- Commit: `1b3f28d` plus metadata `5d568ea`.
