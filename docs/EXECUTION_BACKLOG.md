@@ -39,7 +39,7 @@ Update this file after every task. Include commit/PR reference and actual test r
 - [x] **P2-05 Protected route guard:** added provider-neutral route state guard with loading, signed-out, expiry-boundary, and protected states plus guard tests in `src/auth/routeGuard.ts`. UI/session persistence integration remains pending. Verified 2026-11-27; commit `515ab1e`.
 - [!] **P2-06 Secure session storage:** blocked until exact Cloudflare-compatible identity service and secure native session approach are approved. No provider SDK or token storage added.
 - [~] **P2-07 Onboarding:** added profile, username availability, currency, privacy, optional account-name step, completion UI, and owner-scoped SQLite persistence in `src/onboarding/` and migration v4. Still incomplete: authenticated completion routing and production username uniqueness enforcement.
-- [ ] **P2-08 Auth security tests:** route protection, account linking, token leakage prevention, session expiry, local data isolation. Not started.
+- [~] **P2-08 Auth security tests:** added provider-independent route/session boundary tests in `src/auth/security.test.ts`; incomplete: account linking, token leakage, and local database isolation tests require provider/storage integration.
 
 ## Phase 3 — Private finance core
 
