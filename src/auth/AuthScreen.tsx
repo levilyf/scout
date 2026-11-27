@@ -2,12 +2,13 @@ import { useState } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { colors, spacing, typography } from '../design/tokens';
 import { Field, PrimaryButton, Screen } from '../ui/primitives';
+import type { AuthSession } from './contracts';
 import { testAuthAdapter } from './testAdapter';
 import { normalizeEmail, validateEmail, validatePassword } from './validation';
 
 type Mode = 'login' | 'signup';
 
-export function AuthScreen({ mode = 'login', onSuccess }: { mode?: Mode; onSuccess?: () => void }) {
+export function AuthScreen({ mode = 'login', onSuccess }: { mode?: Mode; onSuccess?: (session: AuthSession) => void }) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState<string | null>(null);
@@ -24,9 +25,10 @@ export function AuthScreen({ mode = 'login', onSuccess }: { mode?: Mode; onSucce
     setLoading(true);
     setError(null);
     try {
-      if (isLogin) await testAuthAdapter.signIn({ email: normalizeEmail(email), password });
-      else await testAuthAdapter.signUp({ email: normalizeEmail(email), password });
-      onSuccess?.();
+      const session = isLogin
+        ? await testAuthAdapter.signIn({ email: normalizeEmail(email), password })
+        : { user: await testAuthAdapter.signUp({ email: normalizeEmail(email), password }), expiresAt: new Date(Date.now() + 3600000).toISOString() };
+      onSuccess?.(session);
     } catch {
       setError('Authentication failed. Try again.');
     } finally {
@@ -48,7 +50,7 @@ export function AuthScreen({ mode = 'login', onSuccess }: { mode?: Mode; onSucce
         {error ? <Text accessibilityRole="alert" style={styles.error}>{error}</Text> : null}
         <PrimaryButton disabled={loading} onPress={submit}>{loading ? 'Loading…' : isLogin ? 'Log in' : 'Sign up'}</PrimaryButton>
         <Text style={styles.separator}>or</Text>
-        <PrimaryButton disabled={loading} onPress={async () => { setLoading(true); setError(null); try { await testAuthAdapter.signInWithGoogle(); onSuccess?.(); } catch { setError('Google sign-in failed. Try again.'); } finally { setLoading(false); } }}>Continue with Google</PrimaryButton>
+        <PrimaryButton disabled={loading} onPress={async () => { setLoading(true); setError(null); try { const session = await testAuthAdapter.signInWithGoogle(); onSuccess?.(session); } catch { setError('Google sign-in failed. Try again.'); } finally { setLoading(false); } }}>Continue with Google</PrimaryButton>
       </View>
     </Screen>
   );

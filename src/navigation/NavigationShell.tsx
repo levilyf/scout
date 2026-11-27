@@ -3,12 +3,15 @@ import { colors, radii, sizes, spacing, typography } from '../design/tokens';
 import { tabLabels, tabs, type Tab } from './routes';
 import { Screen } from '../ui/primitives';
 
-export function NavigationShell({ activeTab = 'home', onTabChange }: { activeTab?: Tab; onTabChange?: (tab: Tab) => void }) {
+export function NavigationShell({ activeTab = 'home', onTabChange, onSignOut }: { activeTab?: Tab; onTabChange?: (tab: Tab) => void; onSignOut?: () => void }) {
   return (
     <Screen style={styles.screen}>
       <View style={styles.content}>
         <Text style={styles.wordmark}>SCOUT</Text>
         <Text style={styles.title}>{tabLabels[activeTab]}</Text>
+        <Pressable accessibilityRole="button" onPress={onSignOut} style={styles.signOut}>
+          <Text style={styles.signOutText}>Sign out</Text>
+        </Pressable>
       </View>
       <View accessibilityRole="tablist" style={styles.tabBar}>
         {tabs.map((tab) => {
@@ -50,4 +53,6 @@ const styles = StyleSheet.create({
   tabLabel: { color: colors.mutedText, ...typography.metadata },
   activeLabel: { color: colors.primaryText },
   pressed: { opacity: 0.72 },
+  signOut: { alignSelf: 'flex-start', minHeight: sizes.touchTarget, justifyContent: 'center' },
+  signOutText: { color: colors.secondaryText, ...typography.body },
 });
