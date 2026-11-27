@@ -43,7 +43,7 @@ Update this file after every task. Include commit/PR reference and actual test r
 
 ## Phase 3 — Private finance core
 
-- [ ] **P3-01 Data model review:** account, category, transaction, transfer, opening balance, audit metadata. Document invariants before migration.
+- [x] **P3-01 Data model review:** documented account, category, transaction, transfer, budget, ownership, money, aggregate, deletion, and migration invariants in `docs/DATA_MODEL.md`. No destructive schema change made. Verified 2026-11-27; commit `TBD`.
 - [ ] **P3-02 Account management:** create/edit/archive, account types, opening balances, balance history.
 - [ ] **P3-03 Categories:** defaults, user categories if approved, category assignment and management.
 - [ ] **P3-04 Money utilities:** parse/format/add/subtract/aggregate using integer minor units; multi-currency safeguards.
