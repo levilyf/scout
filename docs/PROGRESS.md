@@ -6,7 +6,7 @@
 - Phase 1 foundation complete at baseline level.
 - P2-01 external managed identity rejected; exact Cloudflare-compatible identity service remains open.
 - P2-02 through P2-05 partial/baseline auth work exists.
-- P2-07 onboarding partial: profile, username availability adapter, currency, privacy acknowledgement, and completion UI exist.
+- P2-07 onboarding partial: profile, username availability, currency, privacy, optional account-name setup, and completion UI exist.
 - P2-06 secure session storage remains blocked.
 - P2-08 auth security tests not started.
 - `pnpm test`: 4 files, 17 tests passed.
@@ -19,13 +19,13 @@
 
 ## Next task
 
-Continue **P2-07 onboarding**: optional first-account setup, persistence boundary, and authenticated completion routing.
+Continue **P2-07 onboarding**: persistence boundary and authenticated completion routing.
 
 ## Session log
 
-### 2027-11-28 — P2-07 username availability
-- Added provider-neutral `UsernameAvailability` contract and test adapter.
-- Integrated async availability check before advancing username step.
+### 2027-11-28 — P2-07 optional account setup
+- Added optional account-name step; user can skip without blocking onboarding.
+- Completion summary includes optional account name.
 - `pnpm test`: 4 files, 17 tests passed.
 - `pnpm typecheck`: passed.
-- Commit: `c99ecbc`.
+- Commit: pending.
