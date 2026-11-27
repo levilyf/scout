@@ -28,4 +28,4 @@
 - Category edit/archive and transaction assignment remain pending.
 - `pnpm typecheck`: passed.
 - `pnpm test`: 3 files, 12 tests passed.
-- Commit: pending.
+- Commit: `ac975e1`.
