@@ -12,7 +12,7 @@ Update this file after every task. Include commit/PR reference and actual test r
 
 ## Phase 0 — Audit and planning
 
-- [ ] **P0-01 Repository audit:** inspect all files, dependencies, workflows, build scripts, Expo compatibility, and current CI. Record actual baseline checks. Do not change dependencies until compatibility is understood.
+- [x] **P0-01 Repository audit:** inspected all files, dependencies, workflows, build scripts, Expo compatibility, and current CI. Repository contains documentation only; app scaffold, package manifests, lockfile, tests, workflows, and build scripts are absent. Baseline checks unavailable. Verified 2026-11-27; commit `8a7764e`.
 - [ ] **P0-02 Documentation consistency:** align README, AGENTS, PRODUCT_SPEC, PRIVACY_MODEL, DESIGN_SYSTEM, UI_REFERENCE_SPEC, BUILD_PLAN, and this backlog with DECISIONS and ARCHITECTURE.
 - [ ] **P0-03 Route inventory:** produce a route matrix for every page in PRODUCT_SPEC, including auth requirement, parent navigation, empty/loading/error/offline states, and release phase.
 - [ ] **P0-04 Product scope map:** mark every feature MVP, later phase, proposed, or blocked. Do not silently promote proposed features.
