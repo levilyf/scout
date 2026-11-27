@@ -3,9 +3,9 @@
 ## Current state
 
 - Phase 0 audit and planning complete.
-- Phase 1 foundation tasks P1-01 through P1-09 complete at baseline level.
-- P2-01 provider decision remains blocked on external identity approval.
-- P2-02 provider-independent auth contracts and boundary validation complete.
+- Phase 1 foundation complete at baseline level.
+- P2-01 provider decision blocked on external identity approval.
+- P2-02 auth contracts and P2-03 test-adapter login/sign-up UI complete.
 - `pnpm test`: 2 files, 8 tests passed.
 - `pnpm typecheck` passes.
 - No production authentication, sync backend, or social backend exists.
@@ -17,21 +17,18 @@ Production auth remains blocked on owner decision: external managed identity pro
 
 ## Next task
 
-**P2-03 — Login and sign-up UI** using contracts and test adapter only; no production auth integration.
+**P2-04 — Recovery and verification UI** using test adapter only; no production auth integration.
 
 ## Session log
 
-### 2026-11-27 — P2-02 auth adapter contract
-- Added `src/auth/contracts.ts` with provider-neutral user/session/auth adapter/state types.
-- Added `src/auth/validation.ts` for normalized email and password boundary checks.
-- Added `src/auth/validation.test.ts`.
-- `pnpm test`: 2 files, 8 tests passed.
+### 2026-11-27 — P2-03 login/sign-up UI
+- Added `src/auth/testAdapter.ts` for isolated development preview behavior.
+- Added `src/auth/AuthScreen.tsx` with login/sign-up modes, normalized validation, loading/error states, and accessible fields/actions.
+- Protected app transition remains local component state only; no session persistence or production auth claim.
 - `pnpm typecheck`: passed.
-- No provider SDK, token storage, or production auth implementation.
-- Commit: `f35c36c`.
+- `pnpm test`: 2 files, 8 tests passed.
+- Commit: pending.
 
-### 2026-11-27 — P2-01 auth provider decision pack
-- Added `docs/AUTH_PROVIDER_DECISION.md`.
-- Compared Cloudflare Access, Clerk, Auth0, Supabase Auth, Firebase Authentication, and custom auth boundary.
-- Recommended no integration before owner decision; rejected homemade password storage.
-- Commit: `98112e6` plus metadata `5b52bae`.
+### 2026-11-27 — P2-02 auth adapter contract
+- Added provider-neutral contracts and validation.
+- Commit: `f35c36c` plus metadata `1c1dfb7`.
