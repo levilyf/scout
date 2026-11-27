@@ -5,8 +5,8 @@
 - Phase 0 audit and planning complete.
 - Phase 1 foundation complete at baseline level.
 - P2-01 provider decision blocked on external identity approval.
-- P2-02 auth contracts, P2-03 login/sign-up UI, and P2-04 recovery/verification UI complete using test adapter only.
-- `pnpm test`: 2 files, 8 tests passed.
+- P2-02 through P2-05 auth contracts, test UI, recovery/verification, and route guard baseline complete.
+- `pnpm test`: 3 files, 12 tests passed.
 - `pnpm typecheck` passes.
 - No production authentication, sync backend, or social backend exists.
 - No real financial integrations or sensitive permissions are approved.
@@ -17,19 +17,18 @@ Production auth remains blocked on owner decision: external managed identity pro
 
 ## Next task
 
-**P2-05 — Protected route guard**; no guest bypass, session loading/expiry, logout, and account switch behavior.
+**P2-06 — Secure session storage** only after provider and storage approach approval.
 
 ## Session log
 
-### 2026-11-27 — P2-04 recovery/verification UI
-- Added `src/auth/RecoveryScreen.tsx` with reset-password and email-verification flows.
-- Uses provider-neutral adapter and test adapter default.
-- Reset response avoids account enumeration.
-- Production provider flow and resend cooldown remain unimplemented until provider approval.
+### 2026-11-27 — P2-05 protected route guard
+- Added `src/auth/routeGuard.ts` with loading, auth, expiry, protected route states.
+- Added expiry-boundary and access-control tests in `src/auth/routeGuard.test.ts`.
+- UI/session persistence/account-switch integration remains pending.
+- `pnpm test`: 3 files, 12 tests passed.
 - `pnpm typecheck`: passed.
-- `pnpm test`: 2 files, 8 tests passed.
-- Commit: `3d0f429`.
+- Commit: pending.
 
-### 2026-11-27 — P2-03 login/sign-up UI
-- Added test-adapter auth screen and local protected transition.
-- Commit: `5542355` plus metadata `7ac0e98`.
+### 2026-11-27 — P2-04 recovery/verification UI
+- Added reset-password and verification screens.
+- Commit: `3d0f429` plus metadata `409abdf`.
