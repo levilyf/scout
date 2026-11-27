@@ -28,7 +28,7 @@ Production auth remains blocked on owner decision: external managed identity pro
 - `pnpm test`: 2 files, 8 tests passed.
 - `pnpm typecheck`: passed.
 - No provider SDK, token storage, or production auth implementation.
-- Commit: pending.
+- Commit: `f35c36c`.
 
 ### 2026-11-27 — P2-01 auth provider decision pack
 - Added `docs/AUTH_PROVIDER_DECISION.md`.
