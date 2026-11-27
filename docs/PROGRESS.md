@@ -29,3 +29,4 @@ Continue P2 auth integration: add environment example/config validation and secu
 - Uses `EXPO_PUBLIC_SUPABASE_URL` and `EXPO_PUBLIC_SUPABASE_PUBLISHABLE_KEY`; no secrets committed.
 - `pnpm typecheck`: passed.
 - `pnpm test`: 5 files, 20 tests passed.
+- Commit: `83ad8b5`.
