@@ -27,4 +27,4 @@
 - Added tests for decimal rejection and aggregate correctness.
 - `pnpm test`: 3 files, 14 tests passed.
 - `pnpm typecheck`: passed.
-- Commit: pending.
+- Commit: `4e36fa6`.
