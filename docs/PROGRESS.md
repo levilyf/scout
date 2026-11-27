@@ -28,4 +28,4 @@ P2-08 remaining provider-independent work is exhausted. Need Cloudflare-compatib
 - Covered missing-session rejection, expired-session rejection, and normalized identity input without credentials.
 - `pnpm test`: 5 files, 20 tests passed.
 - `pnpm typecheck`: passed.
-- Commit: pending.
+- Commit: `c394293`.
