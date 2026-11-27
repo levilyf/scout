@@ -28,4 +28,4 @@ Continue **P2-07 onboarding**: optional first-account setup, username availabili
 - Preserved explicit privacy action separate from authentication.
 - `pnpm test`: 4 files, 17 tests passed.
 - `pnpm typecheck`: passed.
-- Commit: pending.
+- Commit: `df7c201`.
