@@ -4,6 +4,8 @@ import type { AuthAdapter, AuthSession, AuthUser } from './contracts';
 const url = process.env.EXPO_PUBLIC_SUPABASE_URL;
 const key = process.env.EXPO_PUBLIC_SUPABASE_PUBLISHABLE_KEY;
 
+if ((url && !key) || (!url && key)) throw new Error('Supabase URL and publishable key must be configured together');
+
 export function createSupabaseAuthAdapter(client: SupabaseClient): AuthAdapter {
   return {
     async signUp({ email, password }) {

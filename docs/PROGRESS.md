@@ -5,6 +5,7 @@
 - Supabase Scout project created and verified: `xdjpzmbkllhpnzjkmsjh`, Free, `$0/month`, `ACTIVE_HEALTHY`.
 - `@supabase/supabase-js` added behind provider-neutral auth adapter.
 - P2-01 and P2-06 partial: integration started, production configuration/storage incomplete.
+- Environment example and provider-neutral session-store contract added.
 - Finance/social backend and data remain Cloudflare-only.
 - `pnpm test`: 5 files, 20 tests passed.
 - `pnpm typecheck` passes.
@@ -18,15 +19,14 @@
 
 ## Next task
 
-Continue P2 auth integration: add environment example/config validation and secure session persistence without committing secrets.
+Continue P2 auth integration: native secure session storage choice/configuration and Google OAuth redirect handling.
 
 ## Session log
 
-### 2027-11-28 — Supabase adapter integration
-- Added `@supabase/supabase-js@2.119.2`.
-- Added `src/auth/supabase.ts` implementing provider-neutral email/password, verification, recovery, refresh, sign-out, and guarded deletion adapter methods.
-- Google OAuth deliberately throws until native redirect handling is configured; no false success.
-- Uses `EXPO_PUBLIC_SUPABASE_URL` and `EXPO_PUBLIC_SUPABASE_PUBLISHABLE_KEY`; no secrets committed.
+### 2027-11-28 — P2-06 session/config baseline
+- Added `.env.example` with public Supabase variables only.
+- Added paired env validation in `src/auth/supabase.ts`.
+- Added provider-neutral `SessionStore` and memory implementation in `src/auth/session.ts`.
+- No secrets committed; native secure storage not falsely claimed complete.
 - `pnpm typecheck`: passed.
 - `pnpm test`: 5 files, 20 tests passed.
-- Commit: `83ad8b5`.
