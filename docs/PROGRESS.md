@@ -4,16 +4,17 @@
 
 - Supabase Scout project verified: `xdjpzmbkllhpnzjkmsjh`, Free, `$0/month`, `ACTIVE_HEALTHY`.
 - Supabase client and Expo SecureStore session storage wired behind provider-neutral boundaries.
-- App auth lifecycle now hydrates, protects, signs in, and signs out through session manager.
+- App auth lifecycle hydrates, protects, signs in, and signs out through session manager.
+- Supabase auth-event subscription added and tested.
 - P2-01 provider configuration remains incomplete.
-- P2-06 partial: native session persistence wired; auth event hydration and device tests remain.
+- P2-06 partial: auth event hydration added; expiry/account isolation/device tests remain.
 - P2-07 onboarding partial; P2-08 security tests partial.
-- `pnpm test`: 6 files, 22 tests passed.
+- `pnpm test`: 7 files, 23 tests passed.
 - `pnpm typecheck` passes.
 
 ## Current task
 
-**P2-06 — Secure session storage/auth lifecycle**, partial. App wiring complete. Remaining: Supabase auth event hydration, session expiry handling, account isolation tests, and Google redirect flow.
+**P2-06 — Secure session storage/auth lifecycle**, partial. Remaining: session expiry handling, account isolation tests, and Google redirect flow.
 
 ## Blockers
 
@@ -23,10 +24,10 @@
 
 ## Session log
 
-### 2027-11-28 — P2 auth lifecycle wiring
-- Added visible sign-out action to navigation shell.
-- App now passes session returned by auth UI to session manager.
-- Sign-out clears secure session and returns auth route.
+### 2027-11-28 — Supabase auth event hydration
+- Added `src/auth/supabaseEvents.ts`.
+- Added `src/auth/supabaseEvents.test.ts`.
+- Provider sign-out clears local secure session through session manager.
+- First test run exposed async clear timing; awaited microtask before assertion.
 - `pnpm typecheck`: passed.
-- `pnpm test`: 6 files, 22 tests passed.
-- Commit: `b11bc2b`.
+- `pnpm test`: 7 files, 23 tests passed.
