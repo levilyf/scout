@@ -28,4 +28,4 @@ Continue **P2-07** with authenticated completion route integration only after au
 - Added migration v4 `profiles` table with privacy boolean constraint and unique username index.
 - `pnpm test`: 4 files, 17 tests passed.
 - `pnpm typecheck`: passed.
-- Commit: pending.
+- Commit: `32abdbb`.
