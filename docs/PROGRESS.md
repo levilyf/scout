@@ -20,7 +20,7 @@
 - Added `docs/SCOPE_MAP.md` separating MVP, later approved direction, proposed/validation-dependent work, decision-gated work, and explicit non-goals.
 - Preserved auth, Cloudflare, detection source, sharing, legal, and retention approval gates.
 - Checks: scope reviewed against `MASTER_PLAN`, `PRODUCT_SPEC`, `DECISIONS`, and `EXECUTION_BACKLOG`; no code checks available.
-- Commit: pending.
+- Commit: `c8c0e5b`.
 
 ### 2026-11-27 — P0-03 route inventory
 - Added `docs/ROUTE_INVENTORY.md` with route families, auth requirements, parent navigation, release phase, access rules, and loading/empty/error/offline state contract.
