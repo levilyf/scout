@@ -32,12 +32,12 @@ Update this file after every task. Include commit/PR reference and actual test r
 
 ## Phase 2 — Authentication and onboarding
 
-- [!] **P2-01 Auth provider decision pack:** Supabase Auth Free selected by owner, but verification remains blocked: npm metadata confirms `@supabase/supabase-js` MIT package only; dashboard free limits, billing, OAuth, Cloudflare JWT verification, export/deletion, and terms remain unverified. See `docs/SUPABASE_AUTH_VERIFICATION.md`.
+- [~] **P2-01 Auth provider decision pack:** Supabase Auth Free selected and project verified at `$0/month`; provider adapter integration started. Remaining: dashboard Auth provider configuration, Google OAuth redirect, Cloudflare JWT verification, export/deletion, and free-limit confirmation.
 - [x] **P2-02 Auth adapter contract:** added provider-independent auth/session types and sign-in, sign-up, Google, verification, recovery, refresh, sign-out, and deletion interfaces in `src/auth/contracts.ts`; added boundary validation tests. No provider SDK or production implementation. Verified 2026-11-27; commit `f35c36c`.
 - [~] **P2-03 Login and sign-up UI:** test-adapter login/sign-up screen now includes Google action, validation, loading/error states, and protected transition. Still incomplete: full auth navigation and production adapter integration. No production auth or Google SDK.
 - [~] **P2-04 Recovery and verification UI:** recovery/verification screens now include reset cooldown, validation, loading/error states, and non-enumerating response. Still incomplete: open-email action, reset completion, and production provider flow.
 - [x] **P2-05 Protected route guard:** added provider-neutral route state guard with loading, signed-out, expiry-boundary, and protected states plus guard tests in `src/auth/routeGuard.ts`. UI/session persistence integration remains pending. Verified 2026-11-27; commit `515ab1e`.
-- [!] **P2-06 Secure session storage:** blocked until exact Cloudflare-compatible identity service and secure native session approach are approved. No provider SDK or token storage added.
+- [~] **P2-06 Secure session storage:** Supabase client added behind adapter using publishable env key; native secure session persistence and Expo storage configuration remain pending. No service key or secret added.
 - [~] **P2-07 Onboarding:** added profile, username availability, currency, privacy, optional account-name step, completion UI, and owner-scoped SQLite persistence in `src/onboarding/` and migration v4. Still incomplete: authenticated completion routing and production username uniqueness enforcement.
 - [~] **P2-08 Auth security tests:** added provider-independent route/session boundary tests in `src/auth/security.test.ts`; incomplete: account linking, token leakage, and local database isolation tests require provider/storage integration.
 
