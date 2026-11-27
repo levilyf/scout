@@ -28,4 +28,4 @@ Continue **P2-07 onboarding**: optional first-account setup, persistence boundar
 - Integrated async availability check before advancing username step.
 - `pnpm test`: 4 files, 17 tests passed.
 - `pnpm typecheck`: passed.
-- Commit: pending.
+- Commit: `c99ecbc`.
