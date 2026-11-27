@@ -1,11 +1,20 @@
 import { describe, expect, it } from 'vitest';
-import { addMoney, formatMoney, money, subtractMoney } from './money';
+import { addMoney, formatMoney, money, parseMinorUnits, subtractMoney, sumMoney } from './money';
 import { asEntityId, asMinorUnits } from './types';
 
 describe('money domain', () => {
   it('adds and subtracts integer minor units', () => {
     expect(addMoney(money(1250, 'INR'), money(250, 'INR')).amountMinor).toBe(1500);
     expect(subtractMoney(money(1250, 'INR'), money(250, 'INR')).amountMinor).toBe(1000);
+  });
+
+  it('parses integer minor-unit input and rejects decimal text', () => {
+    expect(parseMinorUnits('  1250 ')).toBe(1250);
+    expect(() => parseMinorUnits('12.50')).toThrow('Amount must be an integer minor-unit value');
+  });
+
+  it('sums same-currency values', () => {
+    expect(sumMoney([money(100, 'INR'), money(250, 'INR')], 'INR').amountMinor).toBe(350);
   });
 
   it('rejects unsafe or fractional minor units', () => {
