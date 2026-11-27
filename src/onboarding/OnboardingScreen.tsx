@@ -2,21 +2,23 @@ import { useState } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { colors, spacing, typography } from '../design/tokens';
 import { Field, PrimaryButton, Screen } from '../ui/primitives';
+import { testUsernameAvailability, type UsernameAvailability } from './availability';
 import { validateCurrency, validateDisplayName, validateUsername } from './validation';
 
 const steps = ['profile', 'username', 'currency', 'privacy', 'complete'] as const;
 
 type Profile = { displayName: string; username: string; currency: string; privacyAcknowledged: boolean };
 
-export function OnboardingScreen({ onComplete }: { onComplete?: (profile: Profile) => void }) {
+export function OnboardingScreen({ onComplete, availability = testUsernameAvailability }: { onComplete?: (profile: Profile) => void; availability?: UsernameAvailability }) {
   const [profile, setProfile] = useState<Profile>({ displayName: '', username: '', currency: 'INR', privacyAcknowledged: false });
   const [step, setStep] = useState(0);
   const [error, setError] = useState<string | null>(null);
   const current = steps[step];
 
-  function continueStep() {
+  async function continueStep() {
     const validation = current === 'profile' ? validateDisplayName(profile.displayName) : current === 'username' ? validateUsername(profile.username) : current === 'currency' ? validateCurrency(profile.currency) : null;
     if (validation) return setError(validation);
+    if (current === 'username' && !(await availability.check(profile.username.trim()))) return setError('Username is not available');
     if (current === 'privacy' && !profile.privacyAcknowledged) return setError('Please acknowledge Scout privacy defaults');
     setError(null);
     if (current === 'complete') return onComplete?.({ ...profile, currency: profile.currency.toUpperCase() });
