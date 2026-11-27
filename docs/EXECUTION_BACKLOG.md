@@ -32,7 +32,7 @@ Update this file after every task. Include commit/PR reference and actual test r
 
 ## Phase 2 — Authentication and onboarding
 
-- [~] **P2-01 Auth provider decision pack:** owner allows external managed identity only if completely free for expected Scout use; finance/social backend remains Cloudflare-only. Compare zero-cost candidates and select provider before integration.
+- [~] **P2-01 Auth provider decision pack:** owner selected Supabase Auth Free for identity only. Verify free limits, billing, Expo Android OAuth, Cloudflare JWT verification, export/deletion, and terms before integration. Finance/social backend remains Cloudflare-only.
 - [x] **P2-02 Auth adapter contract:** added provider-independent auth/session types and sign-in, sign-up, Google, verification, recovery, refresh, sign-out, and deletion interfaces in `src/auth/contracts.ts`; added boundary validation tests. No provider SDK or production implementation. Verified 2026-11-27; commit `f35c36c`.
 - [~] **P2-03 Login and sign-up UI:** basic test-adapter screen exists in `src/auth/AuthScreen.tsx`; incomplete: Google action, full auth navigation, complete states, and production adapter integration. No production auth or Google SDK. Partial commit `5542355`.
 - [~] **P2-04 Recovery and verification UI:** basic test-adapter recovery and verification screens exist in `src/auth/RecoveryScreen.tsx`; incomplete: resend cooldown, open-email action, reset completion, and production provider flow. Partial commit `3d0f429`.
