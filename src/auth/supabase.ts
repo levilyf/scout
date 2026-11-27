@@ -1,5 +1,6 @@
 import { createClient, type SupabaseClient } from '@supabase/supabase-js';
 import type { AuthAdapter, AuthSession, AuthUser } from './contracts';
+import { secureSessionStore } from './secureSession';
 
 const url = process.env.EXPO_PUBLIC_SUPABASE_URL;
 const key = process.env.EXPO_PUBLIC_SUPABASE_PUBLISHABLE_KEY;
@@ -18,7 +19,9 @@ export function createSupabaseAuthAdapter(client: SupabaseClient): AuthAdapter {
       const { data, error } = await client.auth.signInWithPassword({ email, password });
       if (error) throw error;
       if (!data.user || !data.session) throw new Error('Sign-in returned no session');
-      return session(data.user, data.session.expires_at);
+      const result = session(data.user, data.session.expires_at);
+      await secureSessionStore.set(result);
+      return result;
     },
     async signInWithGoogle() {
       const { data, error } = await client.auth.signInWithOAuth({ provider: 'google', options: { skipBrowserRedirect: true } });
@@ -43,11 +46,15 @@ export function createSupabaseAuthAdapter(client: SupabaseClient): AuthAdapter {
     async refreshSession() {
       const { data, error } = await client.auth.refreshSession();
       if (error) throw error;
-      return data.session && data.user ? session(data.user, data.session.expires_at) : null;
+      if (!data.session || !data.user) { await secureSessionStore.clear(); return null; }
+      const result = session(data.user, data.session.expires_at);
+      await secureSessionStore.set(result);
+      return result;
     },
     async signOut() {
       const { error } = await client.auth.signOut();
       if (error) throw error;
+      await secureSessionStore.clear();
     },
     async requestAccountDeletion() {
       throw new Error('Account deletion requires authorized Cloudflare deletion workflow');

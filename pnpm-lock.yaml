@@ -14,6 +14,9 @@ importers:
       expo:
         specifier: ~58.1.0
         version: 58.1.0(@babel/core@7.29.13)(@expo/dom-webview@58.0.2)(react-native@0.88.1(@babel/core@7.29.13)(@types/react@19.3.3)(react@19.3.0))(react@19.3.0)(typescript@6.0.3)
+      expo-secure-store:
+        specifier: ~58.0.3
+        version: 58.0.3(expo@58.1.0)
       expo-sqlite:
         specifier: ~15.1.4
         version: 15.1.4(expo@58.1.0)(react-native@0.88.1(@babel/core@7.29.13)(@types/react@19.3.3)(react@19.3.0))(react@19.3.0)
@@ -1320,6 +1323,11 @@ packages:
 
   expo-modules-macros@0.33.0:
     resolution: {integrity: sha512-ddrT2jbYPYmiHmzcYOixRemFUUK9qQEb5pOBWgoFoW0gj3sGld1CZX0GwblUXeZMyEX65S9vc1bEhIAGVDRA9w==}
+
+  expo-secure-store@58.0.3:
+    resolution: {integrity: sha512-RpubZfqJREEcwKbx3HFoWbtDd31t+yESMj7Ei5/mGQp5vViwUBzL4nUCZRLFyt+O690mT8We7dDtIUZeIk6LbQ==}
+    peerDependencies:
+      expo: '*'
 
   expo-server@58.1.0:
     resolution: {integrity: sha512-jo7I6uHnP5OQYKx3+7lbpdVVnOEwFj2ryDkQdauUQSwgh2HuMUkiFXWUIVe01ts6DLRoff5U0Tv+uNb3CMq/kw==}
@@ -3937,6 +3945,10 @@ snapshots:
       '@expo/modules-macros-linux-x64': 0.33.0
       '@expo/modules-macros-win32-arm64': 0.33.0
       '@expo/modules-macros-win32-x64': 0.33.0
+
+  expo-secure-store@58.0.3(expo@58.1.0):
+    dependencies:
+      expo: 58.1.0(@babel/core@7.29.13)(@expo/dom-webview@58.0.2)(react-native@0.88.1(@babel/core@7.29.13)(@types/react@19.3.3)(react@19.3.0))(react@19.3.0)(typescript@6.0.3)
 
   expo-server@58.1.0: {}
 
