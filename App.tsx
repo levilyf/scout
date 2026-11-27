@@ -1,13 +1,11 @@
 import { StatusBar } from 'expo-status-bar';
-import { Text } from 'react-native';
-import { PrimaryButton, Screen } from './src/ui/primitives';
+import { NavigationShell } from './src/navigation/NavigationShell';
 
 export default function App() {
   return (
-    <Screen>
-      <Text>Scout</Text>
-      <PrimaryButton>Continue</PrimaryButton>
+    <>
+      <NavigationShell />
       <StatusBar style="light" />
-    </Screen>
+    </>
   );
 }
