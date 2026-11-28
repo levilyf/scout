@@ -86,3 +86,8 @@ Stop only the affected task and record an owner decision when:
 - A destructive migration, irreversible deletion, or production release is proposed.
 
 Continue unrelated unblocked tasks.
+## Mandatory visual reference fidelity
+
+Before any UI implementation or UI change, read `docs/UI_REFERENCE_SPEC.md` and `docs/DESIGN_SYSTEM.md`. The owner explicitly requires the supplied 15-screen reference to be reproduced control-by-control and pixel-by-pixel as closely as Android permits: exact visual hierarchy, copy, colours, cap heights, spacing, margins, radii, borders, alignment, iconography, chart geometry and screen composition. This is an implementation contract, not inspiration.
+
+Do not redesign, simplify, add decorative elements, substitute generic templates, or claim pixel-perfect completion without per-screen screenshot comparison against the canonical 1434 × 1536 reference. Preserve the source image at `docs/reference/scout-15-screen-reference.png`. If it is absent, stop image-based visual sign-off and ask the owner to add the original PNG; never fabricate a replacement. Android-native system bars are the only explicit platform adaptation; do not use fake iOS chrome.
