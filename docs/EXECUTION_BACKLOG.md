@@ -48,7 +48,7 @@ Update this file after every task. Include commit/PR reference and actual test r
 - [x] **P3-03 Categories:** added owner/system category schema migration v3 and owner-scoped create/list repository with expense/income kind validation in `src/database/categories.ts`. Category edit/archive and transaction assignment remain pending. Verified 2026-11-27; commit `ac975e1`.
 - [x] **P3-04 Money utilities:** added integer minor-unit parsing, formatting, add/subtract/sum aggregation, safe-integer validation, and currency mismatch guards with tests in `src/domain/money.ts`. Verified 2027-11-28; commit `4e36fa6`.
 - [~] **P3-05 Transaction domain:** added validation, idempotency, confirmed-state, transfer-pair, edit/delete rules, owner-scoped SQLite CRUD, and atomic transfer-pair repository in `src/domain/` and `src/database/`. Runtime persistence tests remain.
-- [ ] **P3-06 Manual transaction forms:** add expense, income, transfer, edit, details.
+- [~] **P3-06 Manual transaction forms:** added shared expense/income/transfer form with integer paise validation and submit boundary in `src/finance/ManualTransactionScreen.tsx`. Persistence, edit, and detail screens remain.
 - [ ] **P3-07 Activity:** grouped list, search, filters, sorting, category details.
 - [ ] **P3-08 Home dashboard:** confirmed totals only, trend and quick actions with real local data.
 - [ ] **P3-09 Budgets:** create/edit/archive, progress and period calculations from confirmed expenses.
