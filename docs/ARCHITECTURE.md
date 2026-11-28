@@ -1,6 +1,6 @@
 # Scout Architecture Blueprint
 
-**Status:** Architecture constraints recorded; provider/service selections remain gated.  
+**Status:** SQLite local-first and Cloudflare-only constraints are approved. Supabase Auth Free is selected for identity only; production auth setup and Cloudflare service/sync decisions remain gated.  
 **Purpose:** Give agents stable technical boundaries without prematurely selecting vendors or creating infrastructure.
 
 ## 1. Approved constraints
