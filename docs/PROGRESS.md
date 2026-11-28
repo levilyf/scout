@@ -38,3 +38,15 @@ Continue P3-07 Activity cleanup and category detail. Then verify budget-period c
 - Set Expo app appearance and Android adaptive-icon background to dark/black.
 - Reconciled the Supabase Auth Free selection across agent instructions, README, architecture, build plan, and decision register. Production setup and verification remain pending.
 - No local test/build commands were run in this session. Awaiting GitHub Actions execution/results.
+
+
+### 2026-11-28 — UI implementation continuation
+- Replaced the generic text-only bottom navigation with a five-destination icon-and-label tab bar matching the reference composition.
+- Added a Settings/Profile hub with identity header and rows for privacy, notifications, appearance, currency, help and about.
+- Added Account screen with export, deletion disclosure (explicitly states deletion is not yet wired), sign out, and version label.
+- Added Support screen visual shell and FAQ/contact/bug/terms rows; actions are not yet connected and must not be represented as complete.
+- Added a Social feed empty state and connected it to the Social tab. It intentionally does not fabricate friends, posts, purchases or financial data.
+- Wired Profile, Account, Support and Social routes into the app.
+- Changes committed to main in commits: `d3bbb34`, `2db0615`, `3450ccf`, `155d229`.
+- Validation limitation: this environment could not resolve github.com from the container, so pnpm install, typecheck, tests and APK build could not be run locally. GitHub Actions status was queried for the app commit but returned no workflow runs at query time.
+- UI reference PNG is still not present in the repository. Exact pixel comparison remains blocked until the original PNG is committed at `docs/reference/scout-15-screen-reference.png`.
