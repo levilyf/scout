@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
+import * as Linking from 'expo-linking';
 import { colors, spacing, typography } from '../design/tokens';
 import { Field, PrimaryButton, Screen } from '../ui/primitives';
 import type { AuthAdapter } from './contracts';
@@ -41,6 +42,7 @@ export function RecoveryScreen({ adapter = testAuthAdapter, onBack }: { adapter?
         {error ? <Text accessibilityRole="alert" style={styles.error}>{error}</Text> : null}
         {message ? <Text style={styles.message}>{message}</Text> : null}
         <PrimaryButton disabled={loading || Boolean(cooldown)} onPress={submit}>{loading ? 'Sending…' : cooldown ? `Resend in ${cooldown}s` : 'Send link'}</PrimaryButton>
+        <Text accessibilityRole="button" onPress={() => void Linking.openURL('mailto:')} style={styles.back}>Open email app</Text>
       </View>
     </Screen>
   );
