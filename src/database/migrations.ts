@@ -1,6 +1,6 @@
 import type { SQLiteDatabase } from 'expo-sqlite';
 
-export const DATABASE_VERSION = 4;
+export const DATABASE_VERSION = 5;
 
 const migrations: Record<number, string[]> = {
   1: [
@@ -19,6 +19,10 @@ const migrations: Record<number, string[]> = {
   4: [
     `CREATE TABLE IF NOT EXISTS profiles (owner_user_id TEXT PRIMARY KEY NOT NULL, display_name TEXT NOT NULL, username TEXT NOT NULL, currency TEXT NOT NULL, privacy_acknowledged INTEGER NOT NULL CHECK (privacy_acknowledged IN (0, 1)), account_name TEXT, completed_at TEXT NOT NULL)`,
     `CREATE UNIQUE INDEX IF NOT EXISTS profiles_username_idx ON profiles(username)`,
+  ],
+  5: [
+    `CREATE TABLE IF NOT EXISTS budgets (id TEXT PRIMARY KEY NOT NULL, owner_user_id TEXT NOT NULL, name TEXT NOT NULL, amount_minor INTEGER NOT NULL, currency TEXT NOT NULL, period TEXT NOT NULL CHECK (period IN ('monthly', 'weekly')), created_at TEXT NOT NULL, updated_at TEXT NOT NULL)`,
+    `CREATE INDEX IF NOT EXISTS budgets_owner_idx ON budgets(owner_user_id, created_at)`,
   ],
 };
 
