@@ -38,7 +38,7 @@ Update this file after every task. Include commit/PR reference and actual test r
 - [~] **P2-04 Recovery and verification UI:** recovery/verification screens now include reset cooldown, validation, loading/error states, and non-enumerating response. Still incomplete: open-email action, reset completion, and production provider flow.
 - [x] **P2-05 Protected route guard:** added provider-neutral route state guard with loading, signed-out, expiry-boundary, and protected states plus guard tests in `src/auth/routeGuard.ts`. UI/session persistence integration remains pending. Verified 2026-11-27; commit `515ab1e`.
 - [~] **P2-06 Secure session storage:** Expo SecureStore, session manager, Supabase auth events, expiry handling, account isolation tests, and native Google OAuth callback flow added. Remaining: dashboard/Google configuration and device/runtime tests.
-- [~] **P2-07 Onboarding:** profile, username availability, currency, privacy, optional account step, completion UI, persistence API, initial-profile injection, and authenticated routing exist. Still incomplete: App SQLite hydration and production username uniqueness enforcement.
+- [~] **P2-07 Onboarding:** profile, username availability, currency, privacy, optional account step, completion UI, SQLite persistence, hydration, and authenticated routing exist. Still incomplete: production username uniqueness enforcement and Android validation.
 - [~] **P2-08 Auth security tests:** added provider-independent route/session boundary tests in `src/auth/security.test.ts`; incomplete: account linking, token leakage, and local database isolation tests require provider/storage integration.
 
 ## Phase 3 — Private finance core
