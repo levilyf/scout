@@ -3,7 +3,7 @@ import { colors, radii, sizes, spacing, typography } from '../design/tokens';
 import { tabLabels, tabs, type Tab } from './routes';
 import { Screen } from '../ui/primitives';
 
-export function NavigationShell({ activeTab = 'home', onTabChange, onSignOut, onAddExpense }: { activeTab?: Tab; onTabChange?: (tab: Tab) => void; onSignOut?: () => void; onAddExpense?: () => void }) {
+export function NavigationShell({ activeTab = 'home', onTabChange, onSignOut, onAddExpense, onActivity }: { activeTab?: Tab; onTabChange?: (tab: Tab) => void; onSignOut?: () => void; onAddExpense?: () => void; onActivity?: () => void }) {
   return (
     <Screen style={styles.screen}>
       <View style={styles.content}>
@@ -23,7 +23,7 @@ export function NavigationShell({ activeTab = 'home', onTabChange, onSignOut, on
               accessibilityState={{ selected: active }}
               accessibilityLabel={tabLabels[tab]}
               key={tab}
-              onPress={() => onTabChange?.(tab)}
+              onPress={() => { onTabChange?.(tab); if (tab === 'activity') onActivity?.(); }}
               style={({ pressed }) => [styles.tab, pressed && styles.pressed]}
             >
               <Text style={[styles.tabLabel, active && styles.activeLabel]}>{tabLabels[tab]}</Text>

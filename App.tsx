@@ -4,6 +4,10 @@ import { AuthScreen } from './src/auth/AuthScreen';
 import { RecoveryScreen } from './src/auth/RecoveryScreen';
 import { OnboardingScreen } from './src/onboarding/OnboardingScreen';
 import { ManualTransactionScreen } from './src/finance/ManualTransactionScreen';
+import { ActivityScreen } from './src/finance/ActivityScreen';
+import { insertTransaction } from './src/database/transactions';
+import { createAccount, listAccounts } from './src/database/accounts';
+import { asEntityId } from './src/domain/types';
 import { openDatabase } from './src/database/client';
 import { loadOnboarding, saveOnboarding, type OnboardingRecord } from './src/onboarding/persistence';
 import { guardRoute } from './src/auth/routeGuard';
@@ -17,6 +21,7 @@ export default function App() {
   const [authMode, setAuthMode] = useState<'login' | 'signup'>('login');
   const [recovery, setRecovery] = useState(false);
   const [addExpense, setAddExpense] = useState(false);
+  const [activity, setActivity] = useState(false);
   const [onboarded, setOnboarded] = useState(false);
   const [initialProfile, setInitialProfile] = useState<Partial<Omit<OnboardingRecord, 'accountName'>> & { accountName?: string } | undefined>();
   const [loading, setLoading] = useState(true);
@@ -35,7 +40,7 @@ export default function App() {
 
   return (
     <>
-      {route.screen === 'loading' ? null : route.screen !== 'protected' ? recovery ? <RecoveryScreen onBack={() => setRecovery(false)} /> : <AuthScreen mode={authMode} onForgotPassword={() => setRecovery(true)} onSwitchMode={() => setAuthMode(authMode === 'login' ? 'signup' : 'login')} onSuccess={(nextSession) => { setOnboarded(false); void manager.set(nextSession); }} /> : !onboarded ? <OnboardingScreen initialProfile={initialProfile} onComplete={(profile) => void openDatabase().then((db) => saveOnboarding(db, { ...profile, ownerUserId: route.session.user.id, accountName: profile.accountName || null })).then(() => setOnboarded(true))} /> : addExpense ? <ManualTransactionScreen onSubmit={() => setAddExpense(false)} /> : <NavigationShell onAddExpense={() => setAddExpense(true)} onSignOut={() => { setOnboarded(false); setInitialProfile(undefined); void manager.clear(); }} />}
+      {route.screen === 'loading' ? null : route.screen !== 'protected' ? recovery ? <RecoveryScreen onBack={() => setRecovery(false)} /> : <AuthScreen mode={authMode} onForgotPassword={() => setRecovery(true)} onSwitchMode={() => setAuthMode(authMode === 'login' ? 'signup' : 'login')} onSuccess={(nextSession) => { setOnboarded(false); void manager.set(nextSession); }} /> : !onboarded ? <OnboardingScreen initialProfile={initialProfile} onComplete={(profile) => void openDatabase().then((db) => saveOnboarding(db, { ...profile, ownerUserId: route.session.user.id, accountName: profile.accountName || null })).then(() => setOnboarded(true))} /> : activity ? <ActivityScreen ownerUserId={route.session.user.id} /> : addExpense ? <ManualTransactionScreen onSubmit={(input) => void openDatabase().then(async (db) => { const owner = asEntityId(route.session.user.id); const accounts = await listAccounts(db, owner); const account = accounts[0] ?? await createAccount(db, { id: asEntityId(`manual-${owner}`), ownerUserId: owner, name: 'Manual account', currency: input.currency }); await insertTransaction(db, { id: `tx-${Date.now()}`, ownerUserId: route.session.user.id, accountId: account.id, type: input.type, status: 'confirmed', money: { amountMinor: input.amountMinor as never, currency: input.currency }, occurredAt: new Date().toISOString(), idempotencyKey: `manual-${Date.now()}` }); }).then(() => setAddExpense(false))} /> : <NavigationShell onActivity={() => setActivity(true)} onAddExpense={() => setAddExpense(true)} onSignOut={() => { setOnboarded(false); setInitialProfile(undefined); void manager.clear(); }} />}
       <StatusBar style="light" />
     </>
   );
