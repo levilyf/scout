@@ -4,7 +4,7 @@
 
 Scout is a free, open-source, India-first personal-finance app with a privacy-first social layer. It helps people understand and manage their money, then selectively share purchases, goals, progress, and financial milestones with friends.
 
-This repository currently contains project specifications only. The Expo / React Native app scaffold has not yet been recreated. Documentation describes planned behavior; it is not proof that a feature is implemented.
+The repository contains an active Expo / React Native implementation plus product and engineering specifications. Features remain in progress; documentation describes intended behavior and is not proof that every flow is production-ready.
 
 ## Product direction
 
@@ -40,11 +40,11 @@ Then read the relevant detailed specs:
 
 ## Current status
 
-- Repository audit complete; current tree contains documentation only. Expo / React Native scaffold is the next implementation foundation.
+- Expo / React Native foundation and first local finance vertical slice exist. Authentication provider setup, native validation, finance edge cases, backend, and social modules remain incomplete.
 - Product requirements and visual direction are documented.
 - Production authentication, finance engine, transaction persistence, sync, and social backend must be verified in code before being described as implemented.
 - No real financial data or sensitive integrations are approved for development.
-- The next agent task is P0-01: Repository audit in docs/EXECUTION_BACKLOG.md.
+- The next agent task is P3-07: Activity cleanup and category detail, followed by budget and finance test cleanup in docs/EXECUTION_BACKLOG.md.
 
 ## Core principles
 
