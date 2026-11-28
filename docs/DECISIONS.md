@@ -35,7 +35,7 @@ This file is the canonical record of owner decisions. Agents must update it when
 
 | ID | Decision needed | Why it matters | Safe work that can continue |
 |---|---|---|---|
-| O-001 | Authentication provider | Account creation, Google OAuth, session lifecycle, verification | Auth interfaces, mock adapters in tests, screen UI, route contracts |
+| O-001 | Authentication provider | **Resolved by D-016:** Supabase Auth Free selected for identity only. Production setup and free-limit/security verification remain incomplete. | Native auth UI, adapter integration, provider configuration checklist, Cloudflare JWT verification design |
 | O-002 | Cloudflare services and remote data layout | API, remote persistence, media, auth verification, sync | Local SQLite, domain layer, API contracts, threat model |
 | O-003 | Sync protocol and conflict policy | Offline edits, multi-device behavior, deletion | Outbox interface and local sync metadata design |
 | O-004 | First transaction detection/import source | Android permissions and reliability | Manual finance flows, generic detection interface, synthetic candidates |
