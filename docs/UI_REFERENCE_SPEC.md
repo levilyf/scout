@@ -725,3 +725,99 @@ Follow the approved build plan. Recommended UI order:
 Do not build all screens as one giant component. Keep routes, components, state, and domain logic separated.
 
 **Final instruction:** The supplied Scout reference is the visual target. Match it deliberately, consistently, and screen by screen. Do not get creative with an already approved design.
+
+
+---
+
+## 0A. OWNER'S EXPLICIT PIXEL-FIDELITY REQUIREMENT (HIGHEST VISUAL PRIORITY)
+
+The owner has reconfirmed using the newly attached 1434 × 1536 PNG that this is the exact target appearance. This is not a mood board and not a loose style suggestion.
+
+**Required fidelity:** screen by screen, control by control, line by line, colour by colour, cap height by cap height, margin by margin, radius by radius, and alignment by alignment. The owner expects the implementation to look as close to the supplied pixels as the platform and device allow.
+
+Treat the supplied image as the visual ground truth. Do not use the phrase "inspired by" as a substitute for reproducing it.
+
+### Absolute visual rules
+
+- Reproduce all 15 phone screens in the same order and visual composition shown in the reference board.
+- Match the black canvas, near-black surfaces, thin charcoal outlines, white primary text, muted grey secondary text, restrained green positive indicators, and the small Google multicolour mark exactly as visually shown.
+- Match the actual proportions: phone frame content width, horizontal insets, top status-bar clearance, header positions, vertical rhythm, button heights, input heights, card dimensions, icon placement, bottom navigation height, and bottom safe-area clearance.
+- Match text hierarchy and optical sizing, not merely nominal font sizes. Compare cap height, x-height, line height, weight, tracking, wrapping and baseline.
+- Match corner radii and border thickness individually for fields, buttons, cards, avatars, icon containers, chips and progress tracks.
+- Match the visible divider lengths, gaps, progress-bar fills, chart strokes, icon stroke weights and alignment.
+- Match the exact visible labels, capitalization, punctuation, ordering and line breaks. Do not rewrite microcopy for stylistic preference.
+- Do not add components, badges, cards, shadows, gradients, accent colours, illustrations or decorative elements absent from the reference.
+- Do not remove any visible component because it seems redundant.
+- Do not "improve" the design by making it more modern, more colourful, more spacious, more compact or more conventional.
+- Keep the screenshot's visual density. Empty space is intentional and must not be filled.
+- Do not substitute generic placeholder art for the headphone product image or other visual assets in the reference when the actual reference asset is available. If unavailable, use a clearly documented temporary asset and track replacement as a blocker.
+
+### Reference screen order (left-to-right, top-to-bottom)
+
+Row 1:
+1. Welcome / Login
+2. Sign Up
+3. Email Verification
+4. Profile Onboarding
+5. Password Recovery
+
+Row 2:
+6. Home / Dashboard
+7. Transaction Approval
+8. Activity / Transactions
+9. Budgets
+10. Savings / Goals
+
+Row 3:
+11. Social Feed
+12. Friend Profile
+13. Settings
+14. Support / Help
+15. Account
+
+Do not confuse the board's five-column arrangement with the app's runtime navigation. Each phone is an independent screen.
+
+### Pixel measurement and implementation method
+
+1. Preserve the original 1434 × 1536 image as the canonical reference. Do not resize, recompress, crop, sharpen, recolour or re-export the source before visual comparison.
+2. Identify each phone viewport and crop the corresponding screen from the canonical image for comparison. Keep the crop coordinates documented in the visual QA report.
+3. Implement each screen at the matching logical aspect ratio and compare at the same device pixel ratio. If the target Android device differs, compare both normalized viewport captures and actual device captures.
+4. Derive spacing, dimensions, border widths, radii, colours and typography from the reference image using image inspection/measurement. Do not invent token values merely because they look plausible.
+5. Build shared components only after measuring repeated elements. Reuse them without introducing per-screen visual drift.
+6. Capture actual app screenshots, align them with the reference crops, and inspect overlays and difference images.
+7. Fix the largest visual mismatches first, then repeat until all screens pass the visual acceptance checks.
+8. Keep a per-screen checklist and record remaining differences. Never mark a screen "pixel-perfect" while known mismatches remain.
+
+### Visual QA acceptance criteria
+
+A screen is not complete merely because it renders or passes TypeScript.
+
+For each of the 15 screens, verify and record:
+- Outer content bounds and safe-area offsets.
+- Header and title position.
+- Every label's text, baseline, size, weight and line wrapping.
+- Every input/button's dimensions, radius, border, fill and text alignment.
+- Every card's dimensions, internal padding and spacing.
+- Icon identity, dimensions, stroke weight and optical alignment.
+- Divider position and length.
+- Chart/progress geometry and stroke/fill.
+- Bottom navigation geometry and selected state, where present.
+- Scroll position and clipping at the reference viewport.
+- Dark theme colours sampled from the original image.
+- Screenshot overlay/difference review.
+
+**No arbitrary "close enough" pass:** log each visible mismatch. If exact reproduction is blocked by font availability, Android system bars, platform-native controls, missing image assets or device density, document the specific limitation and reproduce the closest possible result without silently changing unrelated details.
+
+### Platform fidelity
+
+The reference artwork uses iPhone-style status bars, but the product is Android-first. Reproduce the app content precisely while using Android's genuine status/navigation bars and safe-area behavior. Do not draw fake iOS system chrome inside the Android app. This platform exception does not authorize changing the app's layout, typography, spacing or controls.
+
+### Reference asset availability
+
+The canonical source image was attached in the owner's conversation and is 1434 × 1536 pixels. A coding agent in a separate session cannot necessarily access that conversation attachment.
+
+**Before starting pixel-accurate UI implementation, ensure the original PNG is committed to the repository at:**
+`docs/reference/scout-15-screen-reference.png`
+
+Do not create a substitute, screenshot of a screenshot, or reconstructed approximation and call it the original. If the file is absent, request that the owner add the original PNG at that exact path. The written specification remains binding, but image-based pixel comparison is blocked until the canonical asset is available.
+
