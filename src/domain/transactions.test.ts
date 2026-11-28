@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import { money } from './money';
-import { canDeleteTransaction, canEditTransaction, isConfirmed, validateTransaction, validateTransferPair } from './transactions';
+import { canDeleteTransaction, canEditTransaction, isConfirmed, matchesTransactionSearch, validateTransaction, validateTransferPair } from './transactions';
 
 describe('transaction domain', () => {
   const base = { id: 't1', ownerUserId: 'u1', accountId: 'a1', type: 'expense' as const, status: 'confirmed' as const, money: money(100, 'INR'), occurredAt: '2027-01-01T00:00:00.000Z' };
@@ -27,5 +27,15 @@ describe('transaction domain', () => {
     expect(isConfirmed({ status: 'pending' })).toBe(false);
     expect(isConfirmed({ status: 'ignored' })).toBe(false);
     expect(isConfirmed({ status: 'confirmed' })).toBe(true);
+  });
+  
+  it('searches stored transaction fields including amount, category, account, and date', () => {
+    const searchable = { ...base, categoryId: 'food', occurredAt: '2026-11-28T10:30:00.000Z' };
+    expect(matchesTransactionSearch(searchable, 'expense')).toBe(true);
+    expect(matchesTransactionSearch(searchable, '1.00')).toBe(true);
+    expect(matchesTransactionSearch(searchable, 'food')).toBe(true);
+    expect(matchesTransactionSearch(searchable, 'a1')).toBe(true);
+    expect(matchesTransactionSearch(searchable, 'does-not-match')).toBe(false);
+    expect(matchesTransactionSearch(searchable, '   ')).toBe(true);
   });
 });
