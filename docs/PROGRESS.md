@@ -2,34 +2,38 @@
 
 ## Current state
 
-- First runnable finance vertical slice exists: auth test flow → onboarding → Home → accounts/expense/budgets/activity/export.
-- P3-05 transaction domain/repository partial; native runtime tests blocked.
+- Expo / React Native application foundation and local finance vertical slice exist.
+- Authentication UI, Supabase adapter/session work, onboarding, SQLite, accounts, categories, transactions, Home, Activity, Budgets, and CSV export are partially implemented.
+- P3-05 transaction domain/repository partial; native runtime tests remain.
 - P3-06 forms/detail/edit/delete partial.
-- P3-07 Activity grouped list/search/type filters/sorting/detail partial.
-- P3-08 Home confirmed balance/recent activity/quick actions partial.
-- P3-09 Budgets create/list/progress/edit/delete partial.
-- P3-10 CSV export/share/confirmation partial.
-- P3-11 pure aggregate tests partial.
-- `pnpm test`: 19 files, 48 tests passed.
-- `pnpm typecheck` passes.
-- `npx expo-doctor`: 20/20 checks passed.
+- P3-07 Activity search and category detail cleanup remain.
+- P3-08 Home chart/time filters and full reference widgets remain.
+- P3-09 weekly/monthly period-aware budget calculation added; runtime validation remains.
+- P3-10 CSV export/share implemented; Android share-sheet validation remains.
+- P3-11 pure aggregate tests partial; more edge cases and native persistence tests remain.
+- Last recorded local checks: `pnpm test` 19 files / 48 tests passed; `pnpm typecheck` passed; Expo Doctor 20/20 passed (from prior agent session, not rerun in this session).
+- Fresh GitHub Actions workflows added for CI and debug APK build. First run status not yet verified.
 
 ## Current task
 
-Finance Phase 3 cleanup: category detail, period-specific budgets, and pure edge-case tests. Android/native runtime remains blocked.
+Continue P3-07 Activity cleanup and category detail. Then verify budget-period changes through GitHub Actions and complete P3-11 pure edge-case tests.
 
 ## Blockers
 
-- Android runtime unavailable for screenshot/share validation.
-- Supabase Google provider/dashboard configuration.
-- Cloudflare service selection before remote authorization/deletion.
-- Native SQLite runtime tests unavailable.
+- Android emulator/device not available in the prior agent session; native UI, share sheet, and SQLite runtime validation remain unverified.
+- Supabase Auth Free is selected for identity only. Google OAuth/dashboard configuration, JWT verification at Cloudflare, free limits, billing requirements, and production readiness remain to be verified.
+- Cloudflare service selection and sync conflict policy require an architecture decision before backend implementation.
+- Native SQLite runtime tests unavailable in the prior agent session.
+- Transaction detection source and sensitive permissions remain unapproved.
 
 ## Session log
 
-### 2027-11-28 — finance backlog update
-- Marked Activity sorting and budget edit/delete as implemented partial work.
-- Fixed budget list refresh after writes.
-- `pnpm typecheck`: passed.
-- `pnpm test`: 19 files, 48 tests passed.
-- Commit: `815bc32`.
+### 2026-11-28 — continuation after coding-agent token limit
+- Reviewed current repository state and corrected stale README claims that said the repo contained documentation only.
+- Added pure calendar-period budget calculations: monthly calendar windows and Monday-to-Monday weekly windows.
+- Budget progress now calculates independently for each budget and excludes pending, ignored, income, transfer, other-currency, and out-of-period records.
+- Added unit tests for period boundaries and financial inclusion/exclusion rules.
+- Added fresh GitHub Actions workflows: CI verification and Android debug APK artifact build.
+- Set Expo app appearance and Android adaptive-icon background to dark/black.
+- Reconciled the Supabase Auth Free selection across agent instructions, README, architecture, build plan, and decision register. Production setup and verification remain pending.
+- No local test/build commands were run in this session. Awaiting GitHub Actions execution/results.
