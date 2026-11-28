@@ -7,14 +7,14 @@ import { openDatabase } from '../database/client';
 import { listTransactions } from '../database/transactions';
 import { Card, CenteredState, Screen } from '../ui/primitives';
 
-export function HomeScreen({ ownerUserId, onAddExpense, onAddAccount }: { ownerUserId: string; onAddExpense?: () => void; onAddAccount?: () => void }) {
+export function HomeScreen({ ownerUserId, onAddExpense, onAddAccount, onAccounts }: { ownerUserId: string; onAddExpense?: () => void; onAddAccount?: () => void; onAccounts?: () => void }) {
   const [transactions, setTransactions] = useState<TransactionInput[] | null>(null);
   useEffect(() => { void openDatabase().then((db) => listTransactions(db, ownerUserId)).then(setTransactions); }, [ownerUserId]);
   if (!transactions) return <Screen><CenteredState loading title="Loading Scout" /></Screen>;
   const confirmed = transactions.filter((transaction) => transaction.status === 'confirmed');
   const expenses = confirmed.filter((transaction) => transaction.type === 'expense');
   const total = sumMoney(expenses.map((transaction) => transaction.money), 'INR');
-  return <Screen><View style={styles.header}><Text style={styles.wordmark}>SCOUT</Text><Text style={styles.metadata}>PRIVATE</Text></View><Text style={styles.greeting}>Your money, clearly.</Text><Card style={styles.summary}><Text style={styles.label}>CONFIRMED SPENDING</Text><Text style={styles.amount}>{formatMoney(total)}</Text><Text style={styles.metadata}>Pending records excluded</Text></Card><Pressable accessibilityRole="button" onPress={onAddExpense} style={styles.action}><Text style={styles.actionText}>＋ Add expense</Text></Pressable><Pressable accessibilityRole="button" onPress={onAddAccount} style={styles.secondaryAction}><Text style={styles.secondaryActionText}>＋ Add account</Text></Pressable><Text style={styles.section}>Recent activity</Text>{confirmed.slice(0, 3).map((transaction) => <View key={transaction.id} style={styles.row}><Text style={styles.name}>{transaction.type}</Text><Text style={styles.metadata}>{formatMoney(transaction.money)}</Text></View>)}</Screen>;
+  return <Screen><View style={styles.header}><Text style={styles.wordmark}>SCOUT</Text><Text style={styles.metadata}>PRIVATE</Text></View><Text style={styles.greeting}>Your money, clearly.</Text><Card style={styles.summary}><Text style={styles.label}>CONFIRMED SPENDING</Text><Text style={styles.amount}>{formatMoney(total)}</Text><Text style={styles.metadata}>Pending records excluded</Text></Card><Pressable accessibilityRole="button" onPress={onAddExpense} style={styles.action}><Text style={styles.actionText}>＋ Add expense</Text></Pressable><Pressable accessibilityRole="button" onPress={onAddAccount} style={styles.secondaryAction}><Text style={styles.secondaryActionText}>＋ Add account</Text></Pressable><Pressable accessibilityRole="button" onPress={onAccounts} style={styles.secondaryAction}><Text style={styles.secondaryActionText}>View accounts</Text></Pressable><Text style={styles.section}>Recent activity</Text>{confirmed.slice(0, 3).map((transaction) => <View key={transaction.id} style={styles.row}><Text style={styles.name}>{transaction.type}</Text><Text style={styles.metadata}>{formatMoney(transaction.money)}</Text></View>)}</Screen>;
 }
 
 const styles = StyleSheet.create({
