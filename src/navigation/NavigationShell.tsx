@@ -1,35 +1,37 @@
 import { Pressable, StyleSheet, Text, View } from 'react-native';
 import type { ReactNode } from 'react';
-import { colors, radii, sizes, spacing, typography } from '../design/tokens';
-import { tabLabels, tabs, type Tab } from './routes';
+import { colors, spacing, typography } from '../design/tokens';
+import type { Tab } from './routes';
 import { Screen } from '../ui/primitives';
 
-export function NavigationShell({ activeTab = 'home', onTabChange, onSignOut, onAddExpense, onActivity, onBudgets, homeContent }: { activeTab?: Tab; onTabChange?: (tab: Tab) => void; onSignOut?: () => void; onAddExpense?: () => void; onActivity?: () => void; onBudgets?: () => void; homeContent?: ReactNode }) {
+const items: { key: Tab; label: string; glyph: string }[] = [
+  { key: 'home', label: 'Home', glyph: '⌂' },
+  { key: 'activity', label: 'Activity', glyph: '▤' },
+  { key: 'social', label: 'Social', glyph: '♧' },
+  { key: 'budgets', label: 'Budgets', glyph: '▣' },
+  { key: 'profile', label: 'Profile', glyph: '●' },
+];
+
+export function NavigationShell({ activeTab = 'home', onTabChange, homeContent, socialContent, profileContent, budgetsContent, activityContent }: {
+  activeTab?: Tab;
+  onTabChange?: (tab: Tab) => void;
+  homeContent?: ReactNode;
+  socialContent?: ReactNode;
+  profileContent?: ReactNode;
+  budgetsContent?: ReactNode;
+  activityContent?: ReactNode;
+}) {
+  const content = activeTab === 'home' ? homeContent : activeTab === 'social' ? socialContent : activeTab === 'profile' ? profileContent : activeTab === 'budgets' ? budgetsContent : activityContent;
   return (
     <Screen style={styles.screen}>
-      <View style={styles.content}>
-        <Text style={styles.wordmark}>SCOUT</Text>
-        {activeTab === 'home' && homeContent ? homeContent : <Text style={styles.title}>{tabLabels[activeTab]}</Text>}
-        {activeTab === 'home' ? <Pressable accessibilityRole="button" onPress={onAddExpense} style={styles.quickAction}><Text style={styles.quickActionText}>＋ Add expense</Text></Pressable> : null}
-        <Pressable accessibilityRole="button" onPress={onSignOut} style={styles.signOut}>
-          <Text style={styles.signOutText}>Sign out</Text>
-        </Pressable>
-      </View>
+      <View style={styles.content}>{content}</View>
       <View accessibilityRole="tablist" style={styles.tabBar}>
-        {tabs.map((tab) => {
-          const active = tab === activeTab;
-          return (
-            <Pressable
-              accessibilityRole="tab"
-              accessibilityState={{ selected: active }}
-              accessibilityLabel={tabLabels[tab]}
-              key={tab}
-              onPress={() => { onTabChange?.(tab); if (tab === 'activity') onActivity?.(); if (tab === 'budgets') onBudgets?.(); }}
-              style={({ pressed }) => [styles.tab, pressed && styles.pressed]}
-            >
-              <Text style={[styles.tabLabel, active && styles.activeLabel]}>{tabLabels[tab]}</Text>
-            </Pressable>
-          );
+        {items.map((item) => {
+          const selected = item.key === activeTab;
+          return <Pressable key={item.key} accessibilityRole="tab" accessibilityState={{ selected }} accessibilityLabel={item.label} onPress={() => onTabChange?.(item.key)} style={styles.tab}>
+            <Text style={[styles.glyph, selected && styles.selected]}>{item.glyph}</Text>
+            <Text style={[styles.label, selected && styles.selected]}>{item.label}</Text>
+          </Pressable>;
         })}
       </View>
     </Screen>
@@ -37,26 +39,11 @@ export function NavigationShell({ activeTab = 'home', onTabChange, onSignOut, on
 }
 
 const styles = StyleSheet.create({
-  screen: { paddingBottom: 0 },
-  content: { flex: 1, gap: spacing.lg, paddingTop: spacing.md },
-  wordmark: { color: colors.primaryText, ...typography.wordmark },
-  title: { color: colors.primaryText, ...typography.title },
-  tabBar: {
-    backgroundColor: colors.surface,
-    borderColor: colors.border,
-    borderRadius: radii.lg,
-    borderWidth: 1,
-    flexDirection: 'row',
-    marginBottom: spacing.md,
-    minHeight: sizes.touchTarget,
-    padding: spacing.xxs,
-  },
-  tab: { alignItems: 'center', flex: 1, justifyContent: 'center', minHeight: sizes.touchTarget },
-  tabLabel: { color: colors.mutedText, ...typography.metadata },
-  activeLabel: { color: colors.primaryText },
-  pressed: { opacity: 0.72 },
-  quickAction: { alignSelf: 'flex-start', backgroundColor: colors.primaryText, borderRadius: radii.md, minHeight: sizes.touchTarget, justifyContent: 'center', paddingHorizontal: spacing.md },
-  quickActionText: { color: colors.background, ...typography.button },
-  signOut: { alignSelf: 'flex-start', minHeight: sizes.touchTarget, justifyContent: 'center' },
-  signOutText: { color: colors.secondaryText, ...typography.body },
+  screen: { paddingHorizontal: 0, paddingTop: 0, paddingBottom: 0 },
+  content: { flex: 1 },
+  tabBar: { alignItems: 'center', backgroundColor: colors.background, borderTopColor: colors.border, borderTopWidth: StyleSheet.hairlineWidth, flexDirection: 'row', justifyContent: 'space-around', minHeight: 62, paddingBottom: 4, paddingTop: 5 },
+  tab: { alignItems: 'center', flex: 1, gap: 2, justifyContent: 'center', minHeight: 52 },
+  glyph: { color: colors.mutedText, fontSize: 20, lineHeight: 24 },
+  label: { color: colors.mutedText, ...typography.metadata, fontSize: 10 },
+  selected: { color: colors.primaryText },
 });
