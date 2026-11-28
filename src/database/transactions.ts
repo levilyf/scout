@@ -11,6 +11,11 @@ export async function listTransactions(db: SQLiteDatabase, ownerUserId: string):
   return rows.map((row) => ({ id: row.id, ownerUserId: row.owner_user_id, accountId: row.account_id, type: row.type, status: row.status, money: { amountMinor: row.amount_minor as TransactionInput['money']['amountMinor'], currency: row.currency }, occurredAt: row.occurred_at }));
 }
 
+export async function confirmedBalanceDelta(db: SQLiteDatabase, ownerUserId: string, currency: string): Promise<number> {
+  const row = await db.getFirstAsync<{ total: number | null }>(`SELECT COALESCE(SUM(CASE WHEN type = 'income' THEN amount_minor WHEN type = 'expense' THEN -amount_minor ELSE 0 END), 0) AS total FROM transactions WHERE owner_user_id = ? AND currency = ? AND status = 'confirmed'`, ownerUserId, currency);
+  return row?.total ?? 0;
+}
+
 export async function confirmedExpenseTotal(db: SQLiteDatabase, ownerUserId: string, currency: string): Promise<number> {
   const row = await db.getFirstAsync<{ total: number | null }>(`SELECT COALESCE(SUM(amount_minor), 0) AS total FROM transactions WHERE owner_user_id = ? AND currency = ? AND type = 'expense' AND status = 'confirmed'`, ownerUserId, currency);
   return row?.total ?? 0;

@@ -25,6 +25,11 @@ export async function createAccount(db: SQLiteDatabase, input: NewAccount, now =
   return { id: input.id, ownerUserId: input.ownerUserId, name, currency: input.currency, createdAt: now, updatedAt: now };
 }
 
+export async function accountOpeningTotal(db: SQLiteDatabase, ownerUserId: EntityId, currency: Currency): Promise<number> {
+  const row = await db.getFirstAsync<{ total: number | null }>('SELECT COALESCE(SUM(opening_balance_minor), 0) AS total FROM accounts WHERE owner_user_id = ? AND currency = ? AND archived_at IS NULL', ownerUserId, currency);
+  return row?.total ?? 0;
+}
+
 export async function listAccounts(db: SQLiteDatabase, ownerUserId: EntityId): Promise<Account[]> {
   const rows = await db.getAllAsync<{ id: string; owner_user_id: string; name: string; currency: string; created_at: string; updated_at: string }>(
     'SELECT id, owner_user_id, name, currency, created_at, updated_at FROM accounts WHERE owner_user_id = ? ORDER BY created_at',
