@@ -7,7 +7,7 @@
 - Supabase client, SecureStore, session manager, auth events, expiry, account isolation, and native Google callback code exist.
 - App hydrates/saves owner-scoped onboarding profile through SQLite.
 - P2-01 provider configuration remains incomplete.
-- P2-06 partial: dashboard and Android runtime validation remain.
+- P2-06 partial: Android runtime validation blocked; dashboard/provider configuration remains.
 - P2-07 partial: production username uniqueness remains.
 - P2-08 partial: provider/device tests remain.
 - `pnpm test`: 12 files, 32 tests passed.
@@ -15,19 +15,18 @@
 
 ## Current task
 
-**P2-06/P2-08 validation**, partial. Expo dependency baseline now clean; real Android and provider validation remain.
+**P2 validation**, partial. Android prebuild was attempted; no device/emulator is available.
 
 ## Blockers
 
 - Enable/configure Supabase Google provider and Google Cloud OAuth.
 - Verify Cloudflare JWT validation and account deletion workflow.
-- Android runtime/build environment unavailable.
+- Android device/emulator unavailable; `adb devices` listed no devices and emulator executable is absent.
 
 ## Session log
 
-### 2027-11-28 — Expo dependency alignment
-- `npx expo-doctor` initially found `expo-sqlite@15.1.4` mismatched with SDK 58.
-- Replaced with SDK-compatible `expo-sqlite@58.0.18` using `npx expo install expo-sqlite`.
-- `npx expo-doctor`: 20/20 checks passed.
-- `pnpm typecheck`: passed.
-- `pnpm test`: 12 files, 32 tests passed.
+### 2027-11-28 — Android runtime validation
+- `adb devices`: no connected devices.
+- `npx expo run:android --no-install`: prebuild created `android/`, then stopped because no Android device/emulator exists.
+- Removed generated `android/` directory; no native generated artifacts committed.
+- No Android runtime success claimed.
