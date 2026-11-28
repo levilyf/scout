@@ -4,6 +4,7 @@ export type TransactionInput = {
   id: string;
   ownerUserId: string;
   accountId: string;
+  categoryId?: string;
   type: TransactionType;
   status: TransactionStatus;
   money: Money;
