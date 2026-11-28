@@ -4,19 +4,20 @@
 
 - Supabase Scout project verified: `xdjpzmbkllhpnzjkmsjh`, Free, `$0/month`, `ACTIVE_HEALTHY`.
 - Expo SDK dependency alignment fixed: `expo-doctor` passes all 20 checks.
-- Auth UI has login/signup switching, forgot-password navigation, Google action, recovery, and reset-completion components.
+- Auth UI navigation baseline complete with test adapter.
 - Supabase client, SecureStore, session manager, auth events, expiry, account isolation, and native Google callback code exist.
 - App hydrates/saves owner-scoped onboarding profile through SQLite.
+- Local normalized username availability boundary and tests added.
 - P2-01 provider configuration remains incomplete.
 - P2-06 partial: Android runtime/provider validation remains.
-- P2-07 partial: production username uniqueness remains.
+- P2-07 partial: production/server username uniqueness remains.
 - P2-08 partial: provider/device tests remain.
-- `pnpm test`: 12 files, 32 tests passed.
+- `pnpm test`: 13 files, 33 tests passed.
 - `pnpm typecheck` passes.
 
 ## Current task
 
-**P2-03/P2-04 auth navigation**, baseline complete with test adapter. Production provider and verification routing remain external/configuration work.
+**P2-07 — Onboarding**, partial. Local username availability complete; production uniqueness requires authorized backend contract.
 
 ## Blockers
 
@@ -26,10 +27,9 @@
 
 ## Session log
 
-### 2027-11-28 — auth navigation baseline
-- Auth screen switches login/signup modes.
-- Forgot password opens recovery screen.
-- Recovery returns to auth.
-- Added links and accessible button roles.
+### 2027-11-28 — local username uniqueness boundary
+- Added `createLocalUsernameAvailability` with trim/lowercase normalization.
+- Added availability test.
+- Local check is not production uniqueness; server authorization remains required.
 - `pnpm typecheck`: passed.
-- `pnpm test`: 12 files, 32 tests passed.
+- `pnpm test`: 13 files, 33 tests passed.

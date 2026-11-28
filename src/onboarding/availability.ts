@@ -7,3 +7,7 @@ export const testUsernameAvailability: UsernameAvailability = {
     return username.toLowerCase() !== 'scout';
   },
 };
+
+export function createLocalUsernameAvailability(existing: Set<string>): UsernameAvailability {
+  return { async check(username) { return !existing.has(username.trim().toLowerCase()); } };
+}
