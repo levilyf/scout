@@ -3,18 +3,19 @@
 ## Current state
 
 - Supabase Scout project verified: `xdjpzmbkllhpnzjkmsjh`, Free, `$0/month`, `ACTIVE_HEALTHY`.
+- Expo SDK dependency alignment fixed: `expo-doctor` passes all 20 checks.
 - Supabase client, SecureStore, session manager, auth events, expiry, account isolation, and native Google callback code exist.
 - App hydrates/saves owner-scoped onboarding profile through SQLite.
-- P2-08 includes route/session/identity/ownership/account-linking/error-redaction/token-safety tests.
 - P2-01 provider configuration remains incomplete.
-- P2-06 partial: real device/dashboard validation remains.
-- P2-07 partial: production username uniqueness and Android validation remain.
+- P2-06 partial: dashboard and Android runtime validation remain.
+- P2-07 partial: production username uniqueness remains.
+- P2-08 partial: provider/device tests remain.
 - `pnpm test`: 12 files, 32 tests passed.
 - `pnpm typecheck` passes.
 
 ## Current task
 
-**P2-08 — Auth security tests**, partial. Account-linking, error-redaction, and token-safety coverage added; real SQLite/provider/device tests remain.
+**P2-06/P2-08 validation**, partial. Expo dependency baseline now clean; real Android and provider validation remain.
 
 ## Blockers
 
@@ -24,14 +25,9 @@
 
 ## Session log
 
-### 2027-11-28 — token safety
-- Added `src/auth/tokenSafety.test.ts`.
-- Confirms token-like provider errors never reach user-facing output.
-- `pnpm test`: 12 files, 32 tests passed.
-
-### 2027-11-28 — account linking/error redaction
-- Added `src/auth/accountLinking.ts` and tests.
-- Linking requires verified identity and same Scout user ID.
-- Provider error details are redacted from user-facing output.
+### 2027-11-28 — Expo dependency alignment
+- `npx expo-doctor` initially found `expo-sqlite@15.1.4` mismatched with SDK 58.
+- Replaced with SDK-compatible `expo-sqlite@58.0.18` using `npx expo install expo-sqlite`.
+- `npx expo-doctor`: 20/20 checks passed.
 - `pnpm typecheck`: passed.
-- `pnpm test`: 11 files, 31 tests passed.
+- `pnpm test`: 12 files, 32 tests passed.
