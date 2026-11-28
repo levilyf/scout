@@ -32,3 +32,11 @@ export function validateTransferPair(pair: TransferPair): void {
   if (pair.outgoing.money.currency !== pair.incoming.money.currency || pair.outgoing.money.amountMinor !== pair.incoming.money.amountMinor) throw new Error('Transfer money mismatch');
   if (pair.outgoing.accountId === pair.incoming.accountId) throw new Error('Transfer accounts must differ');
 }
+
+export function canEditTransaction(status: TransactionStatus): boolean {
+  return status !== 'ignored';
+}
+
+export function canDeleteTransaction(status: TransactionStatus): boolean {
+  return status !== 'pending';
+}

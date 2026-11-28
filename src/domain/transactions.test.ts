@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import { money } from './money';
-import { isConfirmed, validateTransaction, validateTransferPair } from './transactions';
+import { canDeleteTransaction, canEditTransaction, isConfirmed, validateTransaction, validateTransferPair } from './transactions';
 
 describe('transaction domain', () => {
   const base = { id: 't1', ownerUserId: 'u1', accountId: 'a1', type: 'expense' as const, status: 'confirmed' as const, money: money(100, 'INR'), occurredAt: '2027-01-01T00:00:00.000Z' };
@@ -14,6 +14,13 @@ describe('transaction domain', () => {
     const leg = { ...base, type: 'transfer' as const };
     validateTransferPair({ outgoing: { ...leg, accountId: 'a1' }, incoming: { ...leg, id: 't2', accountId: 'a2' } });
     expect(() => validateTransferPair({ outgoing: leg, incoming: { ...leg, id: 't2', ownerUserId: 'u2', accountId: 'a2' } })).toThrow('Transfer owner mismatch');
+  });
+
+  it('allows editing except ignored records and deleting only resolved records', () => {
+    expect(canEditTransaction('confirmed')).toBe(true);
+    expect(canEditTransaction('ignored')).toBe(false);
+    expect(canDeleteTransaction('pending')).toBe(false);
+    expect(canDeleteTransaction('confirmed')).toBe(true);
   });
 
   it('excludes pending and ignored records from confirmed state', () => {
