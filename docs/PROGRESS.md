@@ -6,13 +6,13 @@
 - Expo SDK dependency alignment fixed: `expo-doctor` passes all 20 checks.
 - Auth UI, Supabase adapter, SecureStore, session manager, auth events, expiry, account isolation, native Google callback, onboarding persistence, authorization, and deletion contracts exist.
 - P2 provider/device validation remains blocked externally.
-- P3-05 transaction domain now covers validation, idempotency, transfer pairs, edit, delete, and confirmed-state rules.
+- P3-05 now includes pure rules plus owner-scoped SQLite insert/list repository.
 - `pnpm test`: 16 files, 42 tests passed.
 - `pnpm typecheck` passes.
 
 ## Current task
 
-**P3-05 — Transaction domain**, partial. Pure rules complete; SQLite repository/persistence remains.
+**P3-05 — Transaction domain**, partial. Repository baseline added; runtime persistence/idempotency/transfer atomicity tests remain.
 
 ## Blockers
 
@@ -22,8 +22,10 @@
 
 ## Session log
 
-### 2027-11-28 — P3-05 edit/delete rules
-- Added `canEditTransaction` and `canDeleteTransaction` pure rules.
-- Ignored records cannot edit; pending records cannot delete.
+### 2027-11-28 — P3-05 transaction repository
+- Added `src/database/transactions.ts`.
+- Added owner-scoped `INSERT OR IGNORE` and list operations.
+- Domain validation runs before persistence.
+- Runtime SQLite tests remain blocked by missing native runtime.
 - `pnpm typecheck`: passed.
 - `pnpm test`: 16 files, 42 tests passed.
