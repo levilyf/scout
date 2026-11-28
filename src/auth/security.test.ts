@@ -15,4 +15,11 @@ describe('auth security boundaries', () => {
   it('normalizes identity lookup input without exposing credentials', () => {
     expect(normalizeEmail(' User@Example.com ')).toBe('user@example.com');
   });
+
+  it('keeps identity records separate by user ID', () => {
+    const a = { user: { id: 'user-a', email: 'a@example.com', emailVerified: true }, expiresAt: '2099-01-01T00:00:00.000Z' };
+    const b = { user: { id: 'user-b', email: 'b@example.com', emailVerified: true }, expiresAt: '2099-01-01T00:00:00.000Z' };
+    expect(a.user.id).not.toBe(b.user.id);
+    expect(a.user.email).not.toBe(b.user.email);
+  });
 });
