@@ -12,3 +12,12 @@ export async function listBudgets(db: SQLiteDatabase, ownerUserId: string): Prom
   const rows = await db.getAllAsync<{ id: string; owner_user_id: string; name: string; amount_minor: number; currency: string; period: 'monthly' | 'weekly' }>('SELECT id, owner_user_id, name, amount_minor, currency, period FROM budgets WHERE owner_user_id = ? ORDER BY created_at DESC', ownerUserId);
   return rows.map((row) => ({ id: asEntityId(row.id), ownerUserId: asEntityId(row.owner_user_id), name: row.name, amountMinor: row.amount_minor, currency: row.currency, period: row.period }));
 }
+
+export async function updateBudget(db: SQLiteDatabase, ownerUserId: string, budget: StoredBudget): Promise<void> {
+  if (!budget.name.trim() || budget.amountMinor < 0) throw new Error('Invalid budget');
+  await db.runAsync('UPDATE budgets SET name = ?, amount_minor = ?, period = ?, updated_at = ? WHERE id = ? AND owner_user_id = ?', budget.name.trim(), budget.amountMinor, budget.period, new Date().toISOString(), budget.id, ownerUserId);
+}
+
+export async function deleteBudget(db: SQLiteDatabase, ownerUserId: string, id: string): Promise<void> {
+  await db.runAsync('DELETE FROM budgets WHERE id = ? AND owner_user_id = ?', id, ownerUserId);
+}
