@@ -10,7 +10,7 @@ This repository currently contains project specifications only. The Expo / React
 
 - Android-first, international-ready foundation.
 - Mandatory authentication; no guest mode.
-- Email/password and Google sign-in are approved methods; auth provider remains undecided.
+- Email/password and Google sign-in use the selected Supabase Auth Free identity provider; production configuration and limit/security verification remain pending.
 - Local-first finance data with SQLite as the device source of truth.
 - Cloudflare is the only approved backend ecosystem; exact services and sync design remain open.
 - Username-based friend discovery.
