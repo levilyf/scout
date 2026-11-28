@@ -60,3 +60,12 @@ Continue P3-07 Activity cleanup and category detail. Then verify budget-period c
 - Home range selector currently updates the selected visual state; chart range aggregation needs implementation before the range controls can be called functionally complete.
 - Changes committed: `c7cfcd0` and App route wiring commit recorded in GitHub.
 - Validation remains pending: no local install/typecheck/test/APK execution available in this environment; GitHub Actions run status still needs checking.
+
+
+### 2026-11-28 — Home and Activity visual pass
+- Home dashboard: added dynamic chart buckets for 1D, 1W, 1M, 3M and 1Y based on confirmed INR expenses. The range control now changes the data window instead of only changing its selected appearance.
+- Activity: rebuilt the list hierarchy with Scout-style header, search field, selected filter chips, date groups, icon containers, right-aligned signed amounts and explicit pending/ignored status metadata.
+- Activity search/filter/sort remain data-backed; no merchant logos or vendor names are invented because the current transaction schema does not store them.
+- Budget and pending-review actions on Home are wired to existing app routes.
+- Commits: `e90eded` (Home chart ranges), `1769803` (Activity visual pass), plus earlier Home commits `c7cfcd0` and `9c402ed`.
+- Validation still pending. No successful local typecheck/test/APK build has been run in this environment, and GitHub workflow queries have not returned runs. Treat the current UI as implementation-in-progress, not visually signed off.
