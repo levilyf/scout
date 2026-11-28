@@ -8,8 +8,8 @@ import { validateCurrency, validateDisplayName, validateUsername } from './valid
 const steps = ['profile', 'username', 'currency', 'privacy', 'account', 'complete'] as const;
 type Profile = { displayName: string; username: string; currency: string; privacyAcknowledged: boolean; accountName: string };
 
-export function OnboardingScreen({ onComplete, availability = testUsernameAvailability }: { onComplete?: (profile: Profile) => void; availability?: UsernameAvailability }) {
-  const [profile, setProfile] = useState<Profile>({ displayName: '', username: '', currency: 'INR', privacyAcknowledged: false, accountName: '' });
+export function OnboardingScreen({ onComplete, availability = testUsernameAvailability, initialProfile }: { onComplete?: (profile: Profile) => void; availability?: UsernameAvailability; initialProfile?: Partial<Profile> }) {
+  const [profile, setProfile] = useState<Profile>({ displayName: '', username: '', currency: 'INR', privacyAcknowledged: false, accountName: '', ...initialProfile });
   const [step, setStep] = useState(0);
   const [error, setError] = useState<string | null>(null);
   const current = steps[step];

@@ -17,3 +17,11 @@ export async function saveOnboarding(db: SQLiteDatabase, record: OnboardingRecor
     record.ownerUserId, record.displayName, record.username, record.currency, record.privacyAcknowledged ? 1 : 0, record.accountName, new Date().toISOString(),
   );
 }
+
+export async function loadOnboarding(db: SQLiteDatabase, ownerUserId: string): Promise<OnboardingRecord | null> {
+  const row = await db.getFirstAsync<{ owner_user_id: string; display_name: string; username: string; currency: string; privacy_acknowledged: number; account_name: string | null }>(
+    'SELECT owner_user_id, display_name, username, currency, privacy_acknowledged, account_name FROM profiles WHERE owner_user_id = ?',
+    ownerUserId,
+  );
+  return row ? { ownerUserId: row.owner_user_id, displayName: row.display_name, username: row.username, currency: row.currency, privacyAcknowledged: row.privacy_acknowledged === 1, accountName: row.account_name } : null;
+}
