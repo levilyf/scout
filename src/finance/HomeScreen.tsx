@@ -69,17 +69,37 @@ export function HomeScreen({ ownerUserId, onAddExpense, onAddAccount, onAccounts
 
   const confirmed = useMemo(() => (transactions ?? []).filter((item) => item.status === 'confirmed'), [transactions]);
   const pending = useMemo(() => (transactions ?? []).filter((item) => item.status === 'pending'), [transactions]);
+  const chartValues = useMemo(() => {
+    const now = new Date();
+    const count = range === '1D' ? 8 : range === '1W' ? 7 : range === '1M' ? 8 : range === '3M' ? 12 : 12;
+    const start = new Date(now);
+    if (range === '1D') start.setHours(now.getHours() - 21, 0, 0, 0);
+    else if (range === '1W') start.setDate(now.getDate() - 6);
+    else if (range === '1M') start.setDate(now.getDate() - 27);
+    else if (range === '3M') start.setDate(now.getDate() - 77);
+    else start.setMonth(now.getMonth() - 11, 1);
+    const step = range === '1D' ? 3 * 60 * 60 * 1000 : range === '1W' ? 24 * 60 * 60 * 1000 : range === '1M' ? 4 * 24 * 60 * 60 * 1000 : range === '3M' ? 7 * 24 * 60 * 60 * 1000 : null;
+    return Array.from({ length: count }, (_, index) => {
+      const bucketStart = range === '1Y' ? new Date(start.getFullYear(), start.getMonth() + index, 1) : new Date(start.getTime() + index * (step ?? 0));
+      const bucketEnd = range === '1Y' ? new Date(start.getFullYear(), start.getMonth() + index + 1, 1) : new Date(bucketStart.getTime() + (step ?? 0));
+      return confirmed.filter((item) => {
+        if (item.type !== 'expense' || item.money.currency !== 'INR') return false;
+        const occurredAt = new Date(item.occurredAt).getTime();
+        return occurredAt >= bucketStart.getTime() && occurredAt < bucketEnd.getTime();
+      }).reduce((sum, item) => sum + item.money.amountMinor, 0);
+    });
+  }, [confirmed, range]);
   const monthlySpend = useMemo(() => {
     const now = new Date();
-    return Array.from({ length: 6 }, (_, index) => {
-      const date = new Date(now.getFullYear(), now.getMonth() - (5 - index), 1);
+    return Array.from({ length: 2 }, (_, index) => {
+      const date = new Date(now.getFullYear(), now.getMonth() - (1 - index), 1);
       const key = monthKey(date);
       return confirmed.filter((item) => item.type === 'expense' && item.money.currency === 'INR' && monthKey(new Date(item.occurredAt)) === key).reduce((sum, item) => sum + item.money.amountMinor, 0);
     });
   }, [confirmed]);
   const recent = confirmed.slice(0, 3);
-  const spentThisMonth = monthlySpend[5] ?? 0;
-  const spentLastMonth = monthlySpend[4] ?? 0;
+  const spentThisMonth = monthlySpend[1] ?? 0;
+  const spentLastMonth = monthlySpend[0] ?? 0;
   const trend = spentLastMonth > 0 ? Math.round(((spentThisMonth - spentLastMonth) / spentLastMonth) * 100) : null;
 
   if (!transactions) return <Screen><CenteredState loading title="Loading Scout" /></Screen>;
@@ -101,7 +121,7 @@ export function HomeScreen({ ownerUserId, onAddExpense, onAddAccount, onAccounts
       </View>
 
       <View style={styles.chartCard}>
-        <TrendChart values={monthlySpend} />
+        <TrendChart values={chartValues} />
         <View style={styles.rangeRow}>{(['1D', '1W', '1M', '3M', '1Y'] as const).map((value) => <Pressable key={value} onPress={() => setRange(value)} style={[styles.range, range === value && styles.activeRange]}><Text style={[styles.rangeText, range === value && styles.activeRangeText]}>{value}</Text></Pressable>)}</View>
       </View>
 
