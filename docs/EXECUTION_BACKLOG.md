@@ -47,7 +47,7 @@ Update this file after every task. Include commit/PR reference and actual test r
 - [x] **P3-02 Account management:** added owner-scoped account creation/list repository and migration v2 opening-balance/archive columns in `src/database/accounts.ts` and `src/database/migrations.ts`. Edit/archive UI and balance history remain pending. Verified 2026-11-27; commit `f544060`.
 - [x] **P3-03 Categories:** added owner/system category schema migration v3 and owner-scoped create/list repository with expense/income kind validation in `src/database/categories.ts`. Category edit/archive and transaction assignment remain pending. Verified 2026-11-27; commit `ac975e1`.
 - [x] **P3-04 Money utilities:** added integer minor-unit parsing, formatting, add/subtract/sum aggregation, safe-integer validation, and currency mismatch guards with tests in `src/domain/money.ts`. Verified 2027-11-28; commit `4e36fa6`.
-- [ ] **P3-05 Transaction domain:** expense, income, transfer, validation, idempotency, edit/delete rules.
+- [~] **P3-05 Transaction domain:** added pure transaction identity/amount/status validation and confirmed-state helper in `src/domain/transactions.ts` with tests. Idempotency, transfers, edit/delete rules, and persistence remain.
 - [ ] **P3-06 Manual transaction forms:** add expense, income, transfer, edit, details.
 - [ ] **P3-07 Activity:** grouped list, search, filters, sorting, category details.
 - [ ] **P3-08 Home dashboard:** confirmed totals only, trend and quick actions with real local data.

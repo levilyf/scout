@@ -5,28 +5,26 @@
 - Supabase Scout project verified: `xdjpzmbkllhpnzjkmsjh`, Free, `$0/month`, `ACTIVE_HEALTHY`.
 - Expo SDK dependency alignment fixed: `expo-doctor` passes all 20 checks.
 - Auth UI, Supabase adapter, SecureStore, session manager, auth events, expiry, account isolation, native Google callback, onboarding persistence, authorization, and deletion contracts exist.
-- Auth configuration checklist added; dashboard setup still external.
-- P2-01 provider configuration remains incomplete.
-- P2-06 partial: Android/provider validation remains.
-- P2-07 partial: production username uniqueness remains.
-- P2-08 runtime tests blocked; pure security coverage passes.
-- `pnpm test`: 15 files, 37 tests passed.
+- P2 provider/device validation remains blocked externally.
+- P3-05 transaction domain baseline started without bypassing P2 gates.
+- `pnpm test`: 16 files, 39 tests passed.
 - `pnpm typecheck` passes.
 
 ## Current task
 
-**P2 provider configuration**, blocked on dashboard/Google credentials and Android runtime. Code checklist complete.
+**P3-05 — Transaction domain**, partial. Pure validation baseline added; persistence/idempotency/transfer invariants remain.
 
 ## Blockers
 
-- Enable/configure Supabase Google provider and Google Cloud OAuth.
-- Add `scout://auth/callback` to allowed redirects.
-- Verify Cloudflare JWT validation and account deletion workflow.
+- Supabase Google provider/dashboard configuration.
 - Android runtime unavailable.
+- Cloudflare service selection before remote authorization/deletion.
 
 ## Session log
 
-### 2027-11-28 — Supabase auth configuration contract
-- Queried current Supabase docs through MCP for redirect URL and native deep-link requirements.
-- Added `docs/SUPABASE_AUTH_CONFIGURATION.md`.
-- No provider secrets or OAuth credentials handled.
+### 2027-11-28 — P3-05 transaction domain baseline
+- Added `src/domain/transactions.ts`.
+- Added tests for required identity, non-negative integer amount, and confirmed-only status.
+- No transaction migration or repository added yet.
+- `pnpm typecheck`: passed.
+- `pnpm test`: 16 files, 39 tests passed.
