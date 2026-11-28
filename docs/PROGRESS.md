@@ -4,8 +4,8 @@
 
 - Supabase Scout project verified: `xdjpzmbkllhpnzjkmsjh`, Free, `$0/month`, `ACTIVE_HEALTHY`.
 - Expo SDK dependency alignment fixed: `expo-doctor` passes all 20 checks.
+- Auth UI has login/signup switching, forgot-password navigation, Google action, recovery, and reset-completion components.
 - Supabase client, SecureStore, session manager, auth events, expiry, account isolation, and native Google callback code exist.
-- Recovery UI now includes open-email and reset-completion states.
 - App hydrates/saves owner-scoped onboarding profile through SQLite.
 - P2-01 provider configuration remains incomplete.
 - P2-06 partial: Android runtime/provider validation remains.
@@ -16,7 +16,7 @@
 
 ## Current task
 
-**P2 provider-independent completion**, partial. P2-04 UI baseline complete; P2-03 navigation and production provider wiring remain.
+**P2-03/P2-04 auth navigation**, baseline complete with test adapter. Production provider and verification routing remain external/configuration work.
 
 ## Blockers
 
@@ -26,8 +26,10 @@
 
 ## Session log
 
-### 2027-11-28 — recovery UI completion
-- Added `expo-linking` mail-app action.
-- Added `src/auth/ResetCompletionScreen.tsx`.
+### 2027-11-28 — auth navigation baseline
+- Auth screen switches login/signup modes.
+- Forgot password opens recovery screen.
+- Recovery returns to auth.
+- Added links and accessible button roles.
 - `pnpm typecheck`: passed.
 - `pnpm test`: 12 files, 32 tests passed.

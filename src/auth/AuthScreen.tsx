@@ -8,7 +8,7 @@ import { normalizeEmail, validateEmail, validatePassword } from './validation';
 
 type Mode = 'login' | 'signup';
 
-export function AuthScreen({ mode = 'login', onSuccess }: { mode?: Mode; onSuccess?: (session: AuthSession) => void }) {
+export function AuthScreen({ mode = 'login', onSuccess, onForgotPassword, onSwitchMode }: { mode?: Mode; onSuccess?: (session: AuthSession) => void; onForgotPassword?: () => void; onSwitchMode?: () => void }) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState<string | null>(null);
@@ -49,8 +49,10 @@ export function AuthScreen({ mode = 'login', onSuccess }: { mode?: Mode; onSucce
         <Field autoComplete="password" label="Password" onChangeText={setPassword} secureTextEntry value={password} />
         {error ? <Text accessibilityRole="alert" style={styles.error}>{error}</Text> : null}
         <PrimaryButton disabled={loading} onPress={submit}>{loading ? 'Loading…' : isLogin ? 'Log in' : 'Sign up'}</PrimaryButton>
+        {isLogin ? <Text accessibilityRole="button" onPress={onForgotPassword} style={styles.link}>Forgot password?</Text> : null}
         <Text style={styles.separator}>or</Text>
         <PrimaryButton disabled={loading} onPress={async () => { setLoading(true); setError(null); try { const session = await testAuthAdapter.signInWithGoogle(); onSuccess?.(session); } catch { setError('Google sign-in failed. Try again.'); } finally { setLoading(false); } }}>Continue with Google</PrimaryButton>
+        <Text accessibilityRole="button" onPress={onSwitchMode} style={styles.link}>{isLogin ? 'New to Scout? Create account' : 'Already have an account? Log in'}</Text>
       </View>
     </Screen>
   );
@@ -65,4 +67,5 @@ const styles = StyleSheet.create({
   description: { color: colors.secondaryText, ...typography.body, marginBottom: spacing.md },
   error: { color: colors.danger, ...typography.metadata, marginBottom: spacing.xs },
   separator: { color: colors.mutedText, ...typography.metadata, textAlign: 'center' },
+  link: { color: colors.secondaryText, ...typography.body, textAlign: 'center', paddingVertical: spacing.xs },
 });
