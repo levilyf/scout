@@ -49,9 +49,9 @@ Update this file after every task. Include commit/PR reference and actual test r
 - [x] **P3-04 Money utilities:** added integer minor-unit parsing, formatting, add/subtract/sum aggregation, safe-integer validation, and currency mismatch guards with tests in `src/domain/money.ts`. Verified 2027-11-28; commit `4e36fa6`.
 - [~] **P3-05 Transaction domain:** added validation, idempotency, confirmed-state, transfer-pair, edit/delete rules, owner-scoped SQLite CRUD, and atomic transfer-pair repository in `src/domain/` and `src/database/`. Runtime persistence tests remain.
 - [~] **P3-06 Manual transaction forms:** shared form follows UI/product contract with INR display input, exact paise conversion, validation, Home wiring, and transaction detail baseline. Edit persistence and Android screenshot QA remain.
-- [~] **P3-07 Activity:** grouped list, search, type filters, and detail navigation implemented in `src/finance/ActivityScreen.tsx`; sorting/category detail remain.
+- [~] **P3-07 Activity:** grouped list, search, type filters, sorting, and detail navigation implemented in `src/finance/ActivityScreen.tsx`; category detail remains.
 - [~] **P3-08 Home dashboard:** confirmed balance, recent activity, and quick actions implemented in `src/finance/HomeScreen.tsx`; trend/time filters and full widget set remain.
-- [~] **P3-09 Budgets:** local create/list/progress baseline implemented with confirmed expense totals; edit/archive and period-specific calculations remain.
+- [~] **P3-09 Budgets:** local create/list/progress/edit/delete baseline implemented with confirmed expense totals; period-specific calculations remain.
 - [~] **P3-10 Export:** tested CSV serialization, device file creation/share, and confirmation UI implemented; Android share-sheet validation remains.
 - [~] **P3-11 Finance test suite:** added pure aggregate tests for pending/ignored exclusion and transfer exclusion; runtime repository/opening-balance/edit/delete/transfer tests remain blocked by native SQLite runtime.
 
