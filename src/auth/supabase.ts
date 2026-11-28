@@ -1,4 +1,6 @@
 import { createClient, type SupabaseClient } from '@supabase/supabase-js';
+import * as Linking from 'expo-linking';
+import * as WebBrowser from 'expo-web-browser';
 import type { AuthAdapter, AuthSession, AuthUser } from './contracts';
 import { secureSessionStore } from './secureSession';
 
@@ -24,9 +26,20 @@ export function createSupabaseAuthAdapter(client: SupabaseClient): AuthAdapter {
       return result;
     },
     async signInWithGoogle() {
-      const { data, error } = await client.auth.signInWithOAuth({ provider: 'google', options: { skipBrowserRedirect: true } });
+      const redirectTo = Linking.createURL('auth/callback');
+      const { data, error } = await client.auth.signInWithOAuth({ provider: 'google', options: { redirectTo, skipBrowserRedirect: true } });
       if (error) throw error;
-      throw new Error(`Google OAuth requires native redirect handling: ${data.url ?? 'missing URL'}`);
+      if (!data.url) throw new Error('Google OAuth returned no URL');
+      const result = await WebBrowser.openAuthSessionAsync(data.url, redirectTo);
+      if (result.type !== 'success' || !result.url) throw new Error('Google OAuth was cancelled or failed');
+      const callback = new URL(result.url);
+      const code = callback.searchParams.get('code');
+      if (!code) throw new Error('Google OAuth callback missing code');
+      const exchanged = await client.auth.exchangeCodeForSession(code);
+      if (exchanged.error || !exchanged.data.user || !exchanged.data.session) throw exchanged.error ?? new Error('Google OAuth session exchange failed');
+      const resultSession = session(exchanged.data.user, exchanged.data.session.expires_at);
+      await secureSessionStore.set(resultSession);
+      return resultSession;
     },
     async verifyIdentity() {
       const { data, error } = await client.auth.getUser();
