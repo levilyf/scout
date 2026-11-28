@@ -2,29 +2,30 @@
 
 ## Current state
 
-- Supabase Scout project verified: `xdjpzmbkllhpnzjkmsjh`, Free, `$0/month`, `ACTIVE_HEALTHY`.
-- Expo SDK dependency alignment fixed: `expo-doctor` passes all 20 checks.
+- Fresh UI requirements read before screen refinement: `docs/DESIGN_SYSTEM.md`, `docs/UI_REFERENCE_SPEC.md`, `docs/PRODUCT_SPEC.md`, `docs/PRIVACY_MODEL.md`, `src/design/tokens.ts`, `src/ui/primitives.tsx`.
+- Manual transaction form corrected to match product/UI contract: user enters INR display amount; code converts exactly to paise.
 - Auth and onboarding foundations exist; P2 external/provider/device gates remain.
-- P3-05 transaction domain/repository baseline exists; runtime SQLite tests remain blocked.
-- P3-06 manual transaction form baseline added for expense, income, and transfer types.
-- `pnpm test`: 16 files, 42 tests passed.
+- P3-05 transaction domain/repository baseline exists.
+- P3-06 manual form baseline improved; persistence/detail flow remains.
+- `pnpm test`: 16 files, 43 tests passed.
 - `pnpm typecheck` passes.
 
 ## Current task
 
-**P3-06 — Manual transaction forms**, partial. Shared form added; persistence/detail/edit flow remains.
+**P3-06 — Manual transaction forms**, partial. Form now uses INR display input and integer paise conversion; UI screenshot QA and persistence wiring remain.
 
 ## Blockers
 
-- Android runtime unavailable.
+- Android runtime unavailable for screenshot comparison.
 - Supabase Google provider/dashboard configuration.
 - Cloudflare service selection before remote authorization/deletion.
 
 ## Session log
 
-### 2027-11-28 — manual transaction form baseline
-- Added `src/finance/ManualTransactionScreen.tsx`.
-- Supports expense/income/transfer mode, integer paise input, description, validation, and submit callback.
-- No automatic persistence or fabricated financial data.
+### 2027-11-28 — UI-guided transaction form refinement
+- Re-read mandatory UI/design/product/privacy sources before modifying screen.
+- Changed label from paise input to `Amount (INR)` with decimal keyboard/placeholder.
+- Added exact decimal-to-paise parser without floating-point arithmetic.
+- First test run caught missing arrow around throwing assertion; fixed.
 - `pnpm typecheck`: passed.
-- `pnpm test`: 16 files, 42 tests passed.
+- `pnpm test`: 16 files, 43 tests passed.

@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { colors, spacing, typography } from '../design/tokens';
-import { money, parseMinorUnits } from '../domain/money';
+import { parseDisplayAmount } from '../domain/money';
 import type { TransactionType } from '../domain/types';
 import { Field, PrimaryButton, Screen } from '../ui/primitives';
 
@@ -12,9 +12,8 @@ export function ManualTransactionScreen({ type = 'expense', onSubmit }: { type?:
 
   function submit() {
     try {
-      const amountMinor = parseMinorUnits(amount);
-      if (amountMinor < 0) throw new Error('Amount cannot be negative');
-      onSubmit?.({ type, amountMinor: money(amountMinor, 'INR').amountMinor, currency: 'INR', description: description.trim() });
+      const amountMinor = parseDisplayAmount(amount);
+      onSubmit?.({ type, amountMinor, currency: 'INR', description: description.trim() });
     } catch (cause) {
       setError(cause instanceof Error ? cause.message : 'Enter a valid amount');
     }
@@ -24,7 +23,7 @@ export function ManualTransactionScreen({ type = 'expense', onSubmit }: { type?:
     <Screen>
       <View style={styles.content}>
         <Text style={styles.title}>Add {type}</Text>
-        <Field label="Amount (paise)" keyboardType="number-pad" onChangeText={setAmount} value={amount} />
+        <Field label="Amount (INR)" keyboardType="decimal-pad" placeholder="0.00" onChangeText={setAmount} value={amount} />
         <Field label="Description" onChangeText={setDescription} value={description} />
         {error ? <Text accessibilityRole="alert" style={styles.error}>{error}</Text> : null}
         <PrimaryButton onPress={submit}>Save {type}</PrimaryButton>

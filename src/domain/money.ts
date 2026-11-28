@@ -10,6 +10,13 @@ export function parseMinorUnits(value: string): number {
   return asMinorUnits(Number(normalized));
 }
 
+export function parseDisplayAmount(value: string): number {
+  const normalized = value.trim();
+  if (!/^\d+(\.\d{1,2})?$/.test(normalized)) throw new Error('Enter a valid amount');
+  const [whole, fraction = ''] = normalized.split('.');
+  return asMinorUnits(Number(whole) * 100 + Number(fraction.padEnd(2, '0')));
+}
+
 export function addMoney(left: Money, right: Money): Money {
   assertSameCurrency(left, right);
   return money(left.amountMinor + right.amountMinor, left.currency);
