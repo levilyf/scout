@@ -41,3 +41,28 @@ export function canEditTransaction(status: TransactionStatus): boolean {
 export function canDeleteTransaction(status: TransactionStatus): boolean {
   return status !== 'pending';
 }
+
+
+/** Search only fields currently stored in the local transaction model. */
+export function matchesTransactionSearch(input: TransactionInput, query: string): boolean {
+  const normalized = query.trim().toLocaleLowerCase();
+  if (!normalized) return true;
+
+  const amount = String(input.money.amountMinor);
+  const displayAmount = (input.money.amountMinor / 100).toFixed(2);
+  const date = new Date(input.occurredAt);
+  const localDate = Number.isNaN(date.getTime()) ? '' : date.toLocaleDateString();
+  const searchable = [
+    input.type,
+    input.id,
+    input.accountId,
+    input.categoryId ?? '',
+    input.money.currency,
+    amount,
+    displayAmount,
+    input.occurredAt,
+    localDate,
+  ].join(' ').toLocaleLowerCase();
+
+  return searchable.includes(normalized);
+}
