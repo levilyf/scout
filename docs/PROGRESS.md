@@ -3,18 +3,16 @@
 ## Current state
 
 - Supabase Scout project verified: `xdjpzmbkllhpnzjkmsjh`, Free, `$0/month`, `ACTIVE_HEALTHY`.
-- Supabase client and Expo SecureStore session storage wired behind provider-neutral boundaries.
-- App auth lifecycle hydrates, protects, signs in, and signs out through session manager.
-- Supabase auth-event subscription added and tested.
+- Supabase client, SecureStore, session manager, auth-event sync, and expiry utility exist.
 - P2-01 provider configuration remains incomplete.
-- P2-06 partial: auth event hydration added; expiry/account isolation/device tests remain.
+- P2-06 partial: expiry handling added; account isolation/device tests and Google redirect remain.
 - P2-07 onboarding partial; P2-08 security tests partial.
-- `pnpm test`: 7 files, 23 tests passed.
+- `pnpm test`: 8 files, 25 tests passed.
 - `pnpm typecheck` passes.
 
 ## Current task
 
-**P2-06 — Secure session storage/auth lifecycle**, partial. Remaining: session expiry handling, account isolation tests, and Google redirect flow.
+**P2-06 — Secure session storage/auth lifecycle**, partial. Remaining: account isolation/device tests and Google redirect flow.
 
 ## Blockers
 
@@ -24,10 +22,8 @@
 
 ## Session log
 
-### 2027-11-28 — Supabase auth event hydration
-- Added `src/auth/supabaseEvents.ts`.
-- Added `src/auth/supabaseEvents.test.ts`.
-- Provider sign-out clears local secure session through session manager.
-- First test run exposed async clear timing; awaited microtask before assertion.
+### 2027-11-28 — session expiry handling
+- Added `src/auth/sessionExpiry.ts` and tests.
+- Handles exact-boundary expiry and avoids JS timer 32-bit overflow for long sessions.
 - `pnpm typecheck`: passed.
-- `pnpm test`: 7 files, 23 tests passed.
+- `pnpm test`: 8 files, 25 tests passed.
