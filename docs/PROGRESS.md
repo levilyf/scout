@@ -50,3 +50,13 @@ Continue P3-07 Activity cleanup and category detail. Then verify budget-period c
 - Changes committed to main in commits: `d3bbb34`, `2db0615`, `3450ccf`, `155d229`.
 - Validation limitation: this environment could not resolve github.com from the container, so pnpm install, typecheck, tests and APK build could not be run locally. GitHub Actions status was queried for the app commit but returned no workflow runs at query time.
 - UI reference PNG is still not present in the repository. Exact pixel comparison remains blocked until the original PNG is committed at `docs/reference/scout-15-screen-reference.png`.
+
+
+### 2026-11-28 — Home dashboard implementation
+- Replaced the generic Home screen with a dark dashboard layout based on the supplied reference: Scout wordmark, balance visibility toggle, confirmed-balance total, spending trend, line chart, range chips, pending-review card, quick actions and recent activity.
+- Chart values are calculated from confirmed INR expense records only. Pending transactions are shown separately and never enter balance or spending totals.
+- Added real data-backed pending count and recent transaction rows; empty states are explicit rather than filled with invented demo data.
+- Wired Set Budget, Review Pending, and View All actions to existing app routes.
+- Home range selector currently updates the selected visual state; chart range aggregation needs implementation before the range controls can be called functionally complete.
+- Changes committed: `c7cfcd0` and App route wiring commit recorded in GitHub.
+- Validation remains pending: no local install/typecheck/test/APK execution available in this environment; GitHub Actions run status still needs checking.
