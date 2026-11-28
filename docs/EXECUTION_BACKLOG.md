@@ -53,7 +53,7 @@ Update this file after every task. Include commit/PR reference and actual test r
 - [ ] **P3-08 Home dashboard:** confirmed totals only, trend and quick actions with real local data.
 - [ ] **P3-09 Budgets:** create/edit/archive, progress and period calculations from confirmed expenses.
 - [ ] **P3-10 Export:** local export contract, user confirmation, safe file handling.
-- [ ] **P3-11 Finance test suite:** money edge cases, transfers, opening balance, edits, deletions, aggregate correctness, account isolation.
+- [~] **P3-11 Finance test suite:** added pure aggregate tests for pending/ignored exclusion and transfer exclusion; runtime repository/opening-balance/edit/delete/transfer tests remain blocked by native SQLite runtime.
 
 ## Phase 4 — Sync and backend foundation (decision-gated)
 

@@ -2,29 +2,28 @@
 
 ## Current state
 
-- Fresh UI requirements read before recent screen work: `docs/DESIGN_SYSTEM.md`, `docs/UI_REFERENCE_SPEC.md`, `docs/PRODUCT_SPEC.md`, `docs/PRIVACY_MODEL.md`.
-- Supabase project verified Free/$0; auth configuration remains external.
-- P2 provider/device gates remain.
+- Fresh UI requirements read before recent screen refinement.
+- Auth/onboarding foundations and first finance vertical slice exist.
 - P3-05 transaction domain/repository baseline exists.
-- P3-06 now has manual form, Home dashboard, Activity list/filter, and transaction detail baseline.
-- `pnpm test`: 16 files, 43 tests passed.
+- P3-06 manual form, Home, Activity, accounts, budgets, detail/edit/delete screens exist.
+- Finance aggregate rules now have pure tests.
+- `pnpm test`: 18 files, 47 tests passed.
 - `pnpm typecheck` passes.
 
 ## Current task
 
-**P3-06 — Manual transaction forms**, partial. Detail baseline added; edit persistence and Android screenshot QA remain.
+**P3-11 — Finance test suite**, partial. Aggregate rules covered; repository runtime, opening balances, edits/deletes, and transfer persistence tests remain blocked/runtime-dependent.
 
 ## Blockers
 
-- Android runtime unavailable for screenshot comparison.
+- Android/native SQLite runtime unavailable.
 - Supabase Google provider/dashboard configuration.
 - Cloudflare service selection before remote authorization/deletion.
 
 ## Session log
 
-### 2027-11-28 — transaction detail baseline
-- Re-read UI/design/product/privacy sources before screen work.
-- Added `src/finance/TransactionDetailScreen.tsx`.
-- Shows amount, type, status, date, back, and edit action.
+### 2027-11-28 — finance aggregate tests
+- Added `src/domain/aggregates.ts`.
+- Added tests proving pending/ignored exclusion and transfer exclusion from balance delta.
 - `pnpm typecheck`: passed.
-- `pnpm test`: 16 files, 43 tests passed.
+- `pnpm test`: 18 files, 47 tests passed.
