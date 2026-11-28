@@ -39,7 +39,7 @@ Update this file after every task. Include commit/PR reference and actual test r
 - [x] **P2-05 Protected route guard:** added provider-neutral route state guard with loading, signed-out, expiry-boundary, and protected states plus guard tests in `src/auth/routeGuard.ts`. UI/session persistence integration remains pending. Verified 2026-11-27; commit `515ab1e`.
 - [~] **P2-06 Secure session storage:** Expo SecureStore, session manager, Supabase auth events, expiry handling, account isolation tests, and native Google OAuth callback flow added. Remaining: dashboard/Google configuration and device/runtime tests; Android run blocked by no device/emulator.
 - [~] **P2-07 Onboarding:** profile, local normalized username availability, currency, privacy, optional account step, completion UI, SQLite persistence, hydration, and authenticated routing exist. Still incomplete: production username uniqueness enforcement and Android validation.
-- [!] **P2-08 Auth security tests:** provider-independent route/session/account identity, owner-filter, account-linking, error-redaction, and token-safety coverage exists. Real SQLite isolation/device tests blocked: no Android device/emulator and no SQLite CLI/native runtime available. Do not replace with fake SQLite test.
+- [!] **P2-08 Auth security tests:** route/session/account identity, owner-filter, account-linking, error-redaction, token-safety, and authorization contract coverage exists. Real SQLite/provider/device tests blocked: no Android device/emulator and no SQLite CLI/native runtime available. Do not replace with fake SQLite test.
 
 ## Phase 3 — Private finance core
 
