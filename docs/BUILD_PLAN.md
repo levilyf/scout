@@ -5,7 +5,7 @@ This file summarizes the delivery phases. The detailed, executable task queue li
 ## Approved foundation
 
 - Android-first Expo / React Native / TypeScript.
-- Mandatory email/password or Google authentication; provider selection remains open.
+- Mandatory email/password or Google authentication through the selected Supabase Auth Free identity provider; production setup and verification remain pending.
 - Local-first finance data; SQLite is the device source of truth.
 - Cloudflare-only backend ecosystem; exact services and sync architecture remain open.
 - Integer minor-unit money representation (paise for INR).
