@@ -3,12 +3,13 @@ import { colors, radii, sizes, spacing, typography } from '../design/tokens';
 import { tabLabels, tabs, type Tab } from './routes';
 import { Screen } from '../ui/primitives';
 
-export function NavigationShell({ activeTab = 'home', onTabChange, onSignOut }: { activeTab?: Tab; onTabChange?: (tab: Tab) => void; onSignOut?: () => void }) {
+export function NavigationShell({ activeTab = 'home', onTabChange, onSignOut, onAddExpense }: { activeTab?: Tab; onTabChange?: (tab: Tab) => void; onSignOut?: () => void; onAddExpense?: () => void }) {
   return (
     <Screen style={styles.screen}>
       <View style={styles.content}>
         <Text style={styles.wordmark}>SCOUT</Text>
         <Text style={styles.title}>{tabLabels[activeTab]}</Text>
+        {activeTab === 'home' ? <Pressable accessibilityRole="button" onPress={onAddExpense} style={styles.quickAction}><Text style={styles.quickActionText}>＋ Add expense</Text></Pressable> : null}
         <Pressable accessibilityRole="button" onPress={onSignOut} style={styles.signOut}>
           <Text style={styles.signOutText}>Sign out</Text>
         </Pressable>
@@ -53,6 +54,8 @@ const styles = StyleSheet.create({
   tabLabel: { color: colors.mutedText, ...typography.metadata },
   activeLabel: { color: colors.primaryText },
   pressed: { opacity: 0.72 },
+  quickAction: { alignSelf: 'flex-start', backgroundColor: colors.primaryText, borderRadius: radii.md, minHeight: sizes.touchTarget, justifyContent: 'center', paddingHorizontal: spacing.md },
+  quickActionText: { color: colors.background, ...typography.button },
   signOut: { alignSelf: 'flex-start', minHeight: sizes.touchTarget, justifyContent: 'center' },
   signOutText: { color: colors.secondaryText, ...typography.body },
 });
