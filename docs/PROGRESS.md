@@ -6,11 +6,11 @@
 - Authentication UI, Supabase adapter/session work, onboarding, SQLite, accounts, categories, transactions, Home, Activity, Budgets, and CSV export are partially implemented.
 - P3-05 transaction domain/repository partial; native runtime tests remain.
 - P3-06 forms/detail/edit/delete partial.
-- P3-07 Activity search and category detail cleanup remain.
+- P3-07 Activity search now matches stored transaction type, amount, date, category/account IDs, and currency; category detail remains.
 - P3-08 Home chart/time filters and full reference widgets remain.
-- P3-09 weekly/monthly period-aware budget calculation added; runtime validation remains.
+- P3-09 weekly/monthly period-aware budget calculation added with tests; runtime validation remains.
 - P3-10 CSV export/share implemented; Android share-sheet validation remains.
-- P3-11 pure aggregate tests partial; more edge cases and native persistence tests remain.
+- P3-11 pure aggregate, transaction search, and budget-period tests expanded; native persistence tests remain.
 - Last recorded local checks: `pnpm test` 19 files / 48 tests passed; `pnpm typecheck` passed; Expo Doctor 20/20 passed (from prior agent session, not rerun in this session).
 - Fresh GitHub Actions workflows added for CI and debug APK build. First run status not yet verified.
 
@@ -34,6 +34,7 @@ Continue P3-07 Activity cleanup and category detail. Then verify budget-period c
 - Budget progress now calculates independently for each budget and excludes pending, ignored, income, transfer, other-currency, and out-of-period records.
 - Added unit tests for period boundaries and financial inclusion/exclusion rules.
 - Added fresh GitHub Actions workflows: CI verification and Android debug APK artifact build.
+- Fixed Activity search, which previously filtered only transaction type, by adding tested matching for all currently stored searchable fields. Merchant-name search remains impossible until merchant/description is part of the transaction model.
 - Set Expo app appearance and Android adaptive-icon background to dark/black.
 - Reconciled the Supabase Auth Free selection across agent instructions, README, architecture, build plan, and decision register. Production setup and verification remain pending.
 - No local test/build commands were run in this session. Awaiting GitHub Actions execution/results.
