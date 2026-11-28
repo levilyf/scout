@@ -19,7 +19,7 @@ Do not ask the owner what to do next when the backlog contains an unblocked task
 - Scout is an India-first, international-ready, free/open-source personal-finance app with a social layer.
 - Android-first. Current mobile stack is Expo / React Native / TypeScript.
 - Authentication is mandatory. No guest mode.
-- Approved sign-in methods: email/password and Google. Provider selection remains open.
+- Approved sign-in methods: email/password and Google. Supabase Auth Free is selected for identity only; production configuration and limit/security verification remain required.
 - Local-first: SQLite is the device source of truth.
 - Cloudflare is the only approved backend ecosystem. Specific Cloudflare services and sync design remain open.
 - Raw SMS/notification text must never leave the device. Sensitive ingestion itself is not approved until separately decided.
