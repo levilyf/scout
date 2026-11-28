@@ -1,14 +1,15 @@
 import { Pressable, StyleSheet, Text, View } from 'react-native';
+import type { ReactNode } from 'react';
 import { colors, radii, sizes, spacing, typography } from '../design/tokens';
 import { tabLabels, tabs, type Tab } from './routes';
 import { Screen } from '../ui/primitives';
 
-export function NavigationShell({ activeTab = 'home', onTabChange, onSignOut, onAddExpense, onActivity }: { activeTab?: Tab; onTabChange?: (tab: Tab) => void; onSignOut?: () => void; onAddExpense?: () => void; onActivity?: () => void }) {
+export function NavigationShell({ activeTab = 'home', onTabChange, onSignOut, onAddExpense, onActivity, homeContent }: { activeTab?: Tab; onTabChange?: (tab: Tab) => void; onSignOut?: () => void; onAddExpense?: () => void; onActivity?: () => void; homeContent?: ReactNode }) {
   return (
     <Screen style={styles.screen}>
       <View style={styles.content}>
         <Text style={styles.wordmark}>SCOUT</Text>
-        <Text style={styles.title}>{tabLabels[activeTab]}</Text>
+        {activeTab === 'home' && homeContent ? homeContent : <Text style={styles.title}>{tabLabels[activeTab]}</Text>}
         {activeTab === 'home' ? <Pressable accessibilityRole="button" onPress={onAddExpense} style={styles.quickAction}><Text style={styles.quickActionText}>＋ Add expense</Text></Pressable> : null}
         <Pressable accessibilityRole="button" onPress={onSignOut} style={styles.signOut}>
           <Text style={styles.signOutText}>Sign out</Text>
